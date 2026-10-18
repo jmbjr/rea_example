@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "experiment-step2/minesweeper-cli",
+    "cli",
+    "4",
+    "4",
+    "2"
+  ],
+  "stdin": "h\nf 0,0\nu 0,0\nq\n",
+  "returncode": -11,
+  "stdout": "",
+  "stderr": ""
+}
