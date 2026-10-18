@@ -4,7 +4,7 @@ An experiment in recovering a small application's behavior from a compiled binar
 
 ## Status
 
-Milestones 1–4 complete. Selected and pinned Minesweeper, built a CLI-only baseline, established fixed-clock fixtures, and completed a successful native REA/Ghidra analysis in GitHub Actions. See [hosted findings and evidence](evidence/step4-hosted/README.md), [operation guide](docs/GITHUB_ACTIONS.md), and [roadmap issue #1](https://github.com/jmbjr/rea_example/issues/1). Flag/unflag transitions are the first bounded findings; no DODGE model or Python reconstruction exists yet. The pre-dig flag crash remains unfixed. The next bounded roadmap is [issue #1, milestones 5–8](https://github.com/jmbjr/rea_example/issues/1): complete the flag/unflag oracle, pin/audit DODGE, validate and resolve the model, then compare readable Python against native evidence. No further implementation has started.
+Milestones 1–5 complete. Selected and pinned Minesweeper, built a CLI-only baseline, established fixed-clock fixtures, and completed a successful native REA/Ghidra analysis in GitHub Actions. See [hosted findings and evidence](evidence/step4-hosted/README.md), [operation guide](docs/GITHUB_ACTIONS.md), and [roadmap issue #1](https://github.com/jmbjr/rea_example/issues/1). Flag/unflag transitions are the first bounded findings; no DODGE model or Python reconstruction exists yet. The pre-dig flag crash remains unfixed. The [native flag/unflag contract, fixtures, and dependency evidence](evidence/step5/README.md) are complete. Next is [issue #1 milestone 6](https://github.com/jmbjr/rea_example/issues/1): pin and audit DODGE before modeling/resolution and Python comparison.
 
 ## Working decisions
 
