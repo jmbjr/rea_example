@@ -61,3 +61,7 @@ This is therefore a partially source-informed experiment. Later claims must dist
 ## Next gate
 
 Follow issue #1 milestone 2: acquire the pinned source, attempt the upstream build, resolve build issues transparently, exercise the CLI, and record commands/toolchain/executable hash. Deterministic boards and REA compatibility remain unverified.
+
+## Milestone 2 update
+
+Pinned source checkout and CLI-only build completed. See [build results, hashes, runtime captures, and additional source exposure](../evidence/step2/README.md). Earlier statements above about unattempted acquisition/build describe milestone 1. Next gate is issue #1 milestone 3. The upstream full build failed on missing GTK dependencies; no gameplay fix was applied.
