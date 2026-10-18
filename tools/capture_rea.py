@@ -22,6 +22,9 @@ operations = [
     ('overview', ['analyze', str(binary), '--provider', 'ghidra', '--json']),
     ('flag', ['decompile', str(binary), 'msw_flag', '--provider', 'ghidra', '--json']),
     ('unflag', ['decompile', str(binary), 'msw_unflag', '--provider', 'ghidra', '--json']),
+    *[(name, ['decompile', str(binary), name, '--provider', 'ghidra', '--json'])
+      for name in ['msw_get_visible', 'msw_set_visible', 'msw_set_visible_noundo',
+                   'msw_index', 'msw_init', 'run_game']],
 ]
 records = []
 for name, command_args in operations:
@@ -41,7 +44,7 @@ for name, command_args in operations:
     (args.output / 'commands.json').write_text(json.dumps(records, indent=2) + '\n')
     print(f'{name}: exit {code}', flush=True)
     # Keep focused decompilation visible in job logs for remote review.
-    if name in ('flag', 'unflag') or code:
+    if command_args[0] == 'decompile' or code:
         content = stdout_path.read_text()
         print(content[:40000], flush=True)
         if len(content) > 40000:
