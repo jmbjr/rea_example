@@ -1,0 +1,44 @@
+{
+  "repository": "https://github.com/jmbjr/DODGE",
+  "commit": "9af5804719bc4dc421d1cd76d3587f5b678d3f81",
+  "dodge_version": "0.2.1",
+  "status": "working-draft",
+  "files": [
+    {
+      "path": "draft/v0.2.1/DODGE_SPEC.md",
+      "sha256": "3b32029aae2cea1a8c75f185ed631a4e3a2feca9272e1f34111fc4fde7174cb6",
+      "git_blob_sha": "36b41d5f6d06eaa5491c22b733f34bae7e061a90",
+      "size_bytes": 54120
+    },
+    {
+      "path": "draft/v0.2.1/IMPLEMENTATION_GUIDE.md",
+      "sha256": "4f27e0b98c8dcded96666cd3c23ce77839481b231bd152610756bc0a1253f264",
+      "git_blob_sha": "15ecf6f876e78053e4972894af685403347adbe1",
+      "size_bytes": 24257
+    },
+    {
+      "path": "draft/v0.2.1/README.md",
+      "sha256": "cdfd5fa881f911083d3b5774a9decac8a1eb9226d0702f58027133faf0c2f7da",
+      "git_blob_sha": "c151288d60db94ac954fb0705fa80d9c2d12bb72",
+      "size_bytes": 5529
+    },
+    {
+      "path": "draft/v0.2.1/schemas/dodge-export-contract.schema.v0.2.1.json",
+      "sha256": "3e0159ce8ab4cf2f6f820c799364cf466b951afe4bf33ab0bbb6c82a7acb41f6",
+      "git_blob_sha": "eb7832d256746db708b00708628b4bf249a3edcb",
+      "size_bytes": 6650
+    },
+    {
+      "path": "draft/v0.2.1/schemas/dodge-target-manifest.schema.v0.2.1.json",
+      "sha256": "2e5e8c9fa4a93aab39e4301da692e84fdbd0247cc6dd65d6f1a1576468643e40",
+      "git_blob_sha": "e241a8e75ebaea8f04dc0d734f3a8b768f1ad8bd",
+      "size_bytes": 7607
+    },
+    {
+      "path": "draft/v0.2.1/schemas/dodge.schema.v0.2.1.json",
+      "sha256": "270da57228139022d265082cad4d708aff1ba16a710d641a4f2144c7402a2ca9",
+      "git_blob_sha": "d52558dc4cf11feb3a11d0c0d645b36a9d04a3b5",
+      "size_bytes": 49460
+    }
+  ]
+}
