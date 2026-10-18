@@ -1,0 +1,28 @@
+{
+  "case": "unflag-success",
+  "setup_kind": "synthetic-visible-state",
+  "setup": "#F1###",
+  "stdin": "u 0 1\n",
+  "target": {
+    "binary": "/home/runner/work/rea_example/rea_example/evidence/actions/build/flag-oracle",
+    "sha256": "0dffd8e23302e47c47e89f6ef534ff77e055eef0d075927bc9e51078404914c0"
+  },
+  "repetitions": 3,
+  "runs": [
+    {
+      "returncode": 0,
+      "stdout": "{\"initialized\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"######\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"setup\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"#F1###\",\"flags\":1,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n{\"action\":\"u\",\"row\":0,\"column\":1,\"before\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"#F1###\",\"flags\":1,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"result\":0,\"message\":\"Make a move.\",\"after\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"##1###\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n",
+      "stderr": ""
+    },
+    {
+      "returncode": 0,
+      "stdout": "{\"initialized\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"######\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"setup\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"#F1###\",\"flags\":1,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n{\"action\":\"u\",\"row\":0,\"column\":1,\"before\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"#F1###\",\"flags\":1,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"result\":0,\"message\":\"Make a move.\",\"after\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"##1###\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n",
+      "stderr": ""
+    },
+    {
+      "returncode": 0,
+      "stdout": "{\"initialized\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"######\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"setup\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"#F1###\",\"flags\":1,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n{\"action\":\"u\",\"row\":0,\"column\":1,\"before\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"#F1###\",\"flags\":1,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"result\":0,\"message\":\"Make a move.\",\"after\":{\"rows\":2,\"columns\":3,\"mines\":1,\"visible\":\"##1###\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n",
+      "stderr": ""
+    }
+  ]
+}
