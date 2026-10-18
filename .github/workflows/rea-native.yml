@@ -9,6 +9,8 @@ on:
       - 'target/build-cli.sh'
       - 'target/cli-only-stubs.c'
       - 'target/fixed-time.c'
+      - 'target/flag-oracle.c'
+      - 'tools/capture_flag_oracle.py'
       - 'tools/verify_step3.py'
       - 'evidence/step3/**'
 
@@ -73,6 +75,13 @@ jobs:
           gcc -std=c99 -Wall -Wextra -shared -fPIC target/fixed-time.c -o evidence/actions/build/fixed-time.so
           sha256sum evidence/actions/build/* > evidence/actions/build-sha256.txt
           python3 tools/verify_step3.py evidence/actions/build/minesweeper-cli evidence/actions/build/fixed-time.so evidence/step3 2>&1 | tee evidence/actions/replay.txt
+      - name: Build and capture native flag oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          gcc -std=c99 -g -Wall -Wextra -I"$RUNNER_TEMP/minesweeper-upstream/src" "$RUNNER_TEMP/minesweeper-upstream/src/minesweeper.c" target/flag-oracle.c -o evidence/actions/build/flag-oracle
+          sha256sum evidence/actions/build/flag-oracle | tee evidence/actions/oracle-sha256.txt
+          python3 tools/capture_flag_oracle.py evidence/actions/build/flag-oracle evidence/actions/oracle
       - name: Analyze with REA and inspect bounded flag behavior
         shell: bash
         run: |
