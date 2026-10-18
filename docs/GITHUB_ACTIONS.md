@@ -4,7 +4,7 @@ Use the **REA native experiment** workflow under Actions. It runs automatically 
 
 Runner: Ubuntu 24.04 x86_64. REA is pinned to npm 6.5.0; Node to 24.19.0; Java uses Temurin JDK 21 (actual patch recorded). Ghidra 12.1.4 is downloaded from the official NSA GitHub release and verified against its published SHA-256. Actions are pinned to commit SHAs. The job has contents:read permissions and no deployment or repository-write permission.
 
-The job rebuilds the pinned Minesweeper CLI baseline, verifies step 3 fixtures, runs scoped REA readiness, captures a native overview, and decompiles msw_flag and msw_unflag. These function names are already known through prior source exposure; this is not blind symbol discovery. No source-derived behavior is counted as a REA finding.
+The job rebuilds the pinned Minesweeper CLI baseline, verifies step 3 fixtures, runs scoped REA readiness, captures a native overview, and decompiles msw_flag, msw_unflag, their visible-state helpers, index arithmetic, initialization, and CLI caller. It also builds a separately hashed native oracle from the unchanged upstream core plus target/flag-oracle.c and checks six synthetic flag/unflag fixtures, each repeated three times. These function names are already known through prior source exposure; this is not blind symbol discovery. No source-derived behavior is counted as a REA finding.
 
 Download the **rea-native-evidence** artifact from the run. It retains the executable, upstream license, baseline/harness hashes, full tool output and errors, operation commands/timings/exit codes, runner/compiler/JDK versions, Ghidra properties, and the resolved npm dependency lock. Artifacts are retained for 30 days. Preserve accepted findings in repository evidence before expiry.
 
@@ -19,3 +19,7 @@ Pages is a later distribution target for a static browser reconstruction or down
 A failed prerequisite, fixture mismatch, or failed REA command fails the job. Raw evidence is uploaded even on failure when the runner reaches the upload step. Hard job cancellation/timeouts can still prevent complete cleanup or upload. Do not treat a green run alone as proof of recovered semantics.
 
 No Windows laptop setup is required for this hosted route.
+
+## Native oracle scope
+
+The oracle covers direct flag/unflag calls on synthetic 2x3 visible states with valid coordinates, coherent counters and undo disabled. It records initialization, before/after state, upstream result and message. Probe guards and setup are experiment choices. See [the contract and reviewed evidence](../evidence/step5/README.md). It does not run CLI win checking or repair the upstream pre-dig flag crash. tools/capture_flag_oracle.py records complete JSON fixtures under the uploaded oracle/ directory; tools/capture_rea.py records complete native analysis output under rea/.
