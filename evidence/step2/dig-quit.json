@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "experiment-step2/minesweeper-cli",
+    "cli",
+    "4",
+    "4",
+    "2"
+  ],
+  "stdin": "h\nd 0,0\nq\n",
+  "returncode": 0,
+  "stdout": "\u001b[1;1H\u001b[2J  | 0   \n  | 0123\n--|-----\n 0| ####\n 1| ####\n 2| ####\n 3| ####\nMake a move.\n>\nIn-game commands:\n\t- 'd ROW,COL' - dig at ROW,COL\n\t- 'f ROW,COL' - flag ROW,COL\n\t- 'u ROW,COL' - unflag (remove flag) ROW,COL\n\t- 'r ROW,COL' - reveal ROW,COL\n\t- 'q' - quit\n\t- 'h' - help\nMake a move.\n>\u001b[1;1H\u001b[2J  | 0   \n  | 0123\n--|-----\n 0| 0000\n 1| 0000\n 2| 1211\n 3| ####\nMake a move.\n>Aww. Play again soon!\n",
+  "stderr": ""
+}
