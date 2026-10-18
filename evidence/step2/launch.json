@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "experiment-step2/minesweeper-cli"
+  ],
+  "stdin": "",
+  "returncode": 1,
+  "stdout": "usage: experiment-step2/minesweeper-cli [gui|cli]\n\tgui: Use the GTK version.\n\tcli: Use the command line version.\n\tcurses: Use the curses version.\n",
+  "stderr": ""
+}
