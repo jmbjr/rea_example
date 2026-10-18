@@ -1,0 +1,10 @@
+{
+  "command": [
+    "node",
+    "rea-runtime/node_modules/rea-agents/scripts/rea.mjs",
+    "--version"
+  ],
+  "returncode": 0,
+  "stdout": "6.5.0\n",
+  "stderr": ""
+}
