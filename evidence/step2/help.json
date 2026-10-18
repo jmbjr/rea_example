@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "experiment-step2/minesweeper-cli",
+    "cli",
+    "-h"
+  ],
+  "stdin": "",
+  "returncode": 0,
+  "stdout": "usage: cli [rows columns [mines]]\n\tPlay minesweeper.\n\nIn-game commands:\n\t- 'd ROW,COL' - dig at ROW,COL\n\t- 'f ROW,COL' - flag ROW,COL\n\t- 'u ROW,COL' - unflag (remove flag) ROW,COL\n\t- 'r ROW,COL' - reveal ROW,COL\n\t- 'q' - quit\n\t- 'h' - help\n",
+  "stderr": ""
+}
