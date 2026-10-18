@@ -4,7 +4,7 @@ An experiment in recovering a small application's behavior from a compiled binar
 
 ## Status
 
-Planning initialized. No target selected, REA installation performed, binary analyzed, DODGE document validated, or reconstruction implemented yet.
+Milestone 1 complete: selected `brenns10/minesweeper` and pinned upstream commit `c7cadf1f7ed57d950b400d965a7d3bbab5e50bed`. See [target provenance and inspection ledger](target/README.md) and [roadmap issue #1](https://github.com/jmbjr/rea_example/issues/1). Next: build and exercise the CLI. No build, REA installation/analysis, DODGE validation, or reconstruction has been performed yet.
 
 ## Working decisions
 
