@@ -1,0 +1,10 @@
+{
+  "command": [
+    "ps",
+    "-eo",
+    "pid,args"
+  ],
+  "returncode": 47,
+  "stdout": "",
+  "stderr": "Error, do this: mount -t proc proc /proc\n"
+}
