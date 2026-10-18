@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "experiment-step2/minesweeper-cli",
+    "cli",
+    "4",
+    "4",
+    "2"
+  ],
+  "stdin": "q\n",
+  "returncode": 0,
+  "stdout": "\u001b[1;1H\u001b[2J  | 0   \n  | 0123\n--|-----\n 0| ####\n 1| ####\n 2| ####\n 3| ####\nMake a move.\n>Aww. Play again soon!\n",
+  "stderr": ""
+}
