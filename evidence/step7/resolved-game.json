@@ -1,0 +1,2380 @@
+{
+  "resolved_version": "rea-flags-resolved/1",
+  "document_identity": {
+    "document_id": "rea.minesweeper.flags",
+    "dodge_version": "0.2.1",
+    "sha256": "7edeed1f3ec4145a5a55c216be220e23fd6de23ac99d2c68001ece91cd32e1bd"
+  },
+  "sources": {
+    "rea-flag": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_flag.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "72a4e24eda7357b251d66d9377c73bd40c4b96ae4acbce6741ee98972a82ed56"
+    },
+    "rea-unflag": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_unflag.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "33894017c336f3030c102604862a139ca59e41552f2b8b043349719791d25fb3"
+    },
+    "rea-getter": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_get_visible.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "142bcc299c17b72a2f0d8ca62e6893f214bea60cec57b9b008c40e219a57b2c1"
+    },
+    "rea-setter": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_set_visible.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "848be7263d9be6a4f6259d8b5ac6d5abc2e0e09687f276487034a51e530032fd"
+    },
+    "rea-init": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_init.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "b551c53f47ceb5d60a734650e69f5cd956f9569907192a93cacecf2502dd2da7"
+    },
+    "flag-profile": {
+      "kind": "semantic_validator",
+      "uri": "tools/flag_profile.py",
+      "version": "0.1.0",
+      "authority": "authoritative",
+      "sha256": "9dc7546f554c157be52eddd648bed9b6e5a1ae50fa889aab3b40bb898ffaae48"
+    },
+    "evidence-lock": {
+      "kind": "rules",
+      "uri": "model/evidence-lock.json",
+      "version": "1",
+      "authority": "reference",
+      "sha256": "efe310d4ef1b17ca660350db1157055db50b48fbfe4fadf89b500c8102e60910"
+    },
+    "rea-index": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_index.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "eeb943394eb2b06c1153031be58ea10124797ec61edb30926cc5cdf8dd4114a9"
+    },
+    "rea-setter-noundo": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_set_visible_noundo.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "07530ff743540125038e0ca17223f57f88f2bbb2231cf41692ac85ddaf2f8260"
+    },
+    "rea-caller": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/run_game.json",
+      "version": "milestone-5",
+      "authority": "reference",
+      "sha256": "eab925ca37be60ed60139628fcbdffdccc8fe4445cdab98a662c7667d887da6d"
+    },
+    "oracle-flag-already-flagged": {
+      "kind": "scenario",
+      "uri": "evidence/step5/oracle/flag-already-flagged.json",
+      "version": "milestone-5",
+      "authority": "authoritative",
+      "sha256": "9a8f87e794c3558deef7934a0bf41b9f647889b564fbacac50ddb468fb3bf4c4",
+      "description": "Synthetic native fixture; historical input and output, not a rule definition."
+    },
+    "oracle-flag-revealed": {
+      "kind": "scenario",
+      "uri": "evidence/step5/oracle/flag-revealed.json",
+      "version": "milestone-5",
+      "authority": "authoritative",
+      "sha256": "48d22a4817336c186cc612b48b90ce68e03f69b8fb3c1252e029a25add8791a8",
+      "description": "Synthetic native fixture; historical input and output, not a rule definition."
+    },
+    "oracle-flag-success": {
+      "kind": "scenario",
+      "uri": "evidence/step5/oracle/flag-success.json",
+      "version": "milestone-5",
+      "authority": "authoritative",
+      "sha256": "f50800b4baeac18984fcd4d74dac0d818b8467e5b7dca64bc5e19d5552d9470c",
+      "description": "Synthetic native fixture; historical input and output, not a rule definition."
+    },
+    "oracle-repeated-sequence": {
+      "kind": "scenario",
+      "uri": "evidence/step5/oracle/repeated-sequence.json",
+      "version": "milestone-5",
+      "authority": "authoritative",
+      "sha256": "2e0b457ed719ee44fcc4cc18148b29d3bf904a3e2c7928fb1afaf61b7353210c",
+      "description": "Synthetic native fixture; historical input and output, not a rule definition."
+    },
+    "oracle-unflag-success": {
+      "kind": "scenario",
+      "uri": "evidence/step5/oracle/unflag-success.json",
+      "version": "milestone-5",
+      "authority": "authoritative",
+      "sha256": "52178f3fc9d8134f8e40549622b891c58abe5f8bb52967e5d6aa473a2c97d092",
+      "description": "Synthetic native fixture; historical input and output, not a rule definition."
+    },
+    "oracle-unflag-unflagged": {
+      "kind": "scenario",
+      "uri": "evidence/step5/oracle/unflag-unflagged.json",
+      "version": "milestone-5",
+      "authority": "authoritative",
+      "sha256": "d5b01915709a559b7521ab3308843d863dd16bf4dc25d121886daac3cbaf0a4e",
+      "description": "Synthetic native fixture; historical input and output, not a rule definition."
+    }
+  },
+  "rules": {
+    "values": {
+      "cell-visible": {
+        "type": "enum",
+        "owner_scope": "object",
+        "persistence_scope": "scenario",
+        "enum_values": [
+          "#",
+          "F",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      "cell-row": {
+        "type": "integer",
+        "owner_scope": "object",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "cell-column": {
+        "type": "integer",
+        "owner_scope": "object",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "result": {
+        "type": "enum",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "enum_values": [
+          0,
+          2,
+          8
+        ]
+      },
+      "rows": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "columns": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "mines": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "flags": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "generation": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "undo-index": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "undo-enabled": {
+        "type": "boolean",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario"
+      },
+      "grid-initialized": {
+        "type": "boolean",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario"
+      }
+    },
+    "conditions": {
+      "flag-eligible": {
+        "op": "eq",
+        "left": {
+          "ref": "cell-visible",
+          "subject": {
+            "relative": "target"
+          }
+        },
+        "right": "#",
+        "source_ref": "rea-flag"
+      },
+      "unflag-eligible": {
+        "op": "eq",
+        "left": {
+          "ref": "cell-visible",
+          "subject": {
+            "relative": "target"
+          }
+        },
+        "right": "F",
+        "source_ref": "rea-unflag"
+      }
+    },
+    "effects": {
+      "flag-cell": {
+        "op": "set",
+        "target_ref": "cell-visible",
+        "subject": {
+          "relative": "target"
+        },
+        "value": "F",
+        "source_ref": "rea-flag"
+      },
+      "flag-count": {
+        "op": "add",
+        "target_ref": "flags",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 1,
+        "source_ref": "rea-flag"
+      },
+      "flag-ok": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 0,
+        "source_ref": "rea-flag"
+      },
+      "flag-reject": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 2,
+        "source_ref": "rea-flag"
+      },
+      "unflag-cell": {
+        "op": "set",
+        "target_ref": "cell-visible",
+        "subject": {
+          "relative": "target"
+        },
+        "value": "#",
+        "source_ref": "rea-unflag"
+      },
+      "unflag-count": {
+        "op": "subtract",
+        "target_ref": "flags",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 1,
+        "source_ref": "rea-unflag"
+      },
+      "unflag-ok": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 0,
+        "source_ref": "rea-unflag"
+      },
+      "unflag-reject": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 8,
+        "source_ref": "rea-unflag"
+      }
+    },
+    "actions": {
+      "flag": {
+        "name": "Flag",
+        "target": {
+          "relative": "target"
+        },
+        "procedure_ref": "flag-procedure",
+        "source_ref": "rea-flag"
+      },
+      "unflag": {
+        "name": "Unflag",
+        "target": {
+          "relative": "target"
+        },
+        "procedure_ref": "unflag-procedure",
+        "source_ref": "rea-unflag"
+      }
+    },
+    "procedures": {
+      "flag-procedure": {
+        "name": "Flag result",
+        "source_ref": "rea-flag",
+        "steps": [
+          {
+            "kind": "branch",
+            "branches": [
+              {
+                "condition": "flag-eligible",
+                "steps": [
+                  {
+                    "kind": "effect",
+                    "ref": "flag-cell"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "flag-count"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "flag-ok"
+                  }
+                ]
+              }
+            ],
+            "else_steps": [
+              {
+                "kind": "effect",
+                "ref": "flag-reject"
+              }
+            ]
+          }
+        ]
+      },
+      "unflag-procedure": {
+        "name": "Unflag result",
+        "source_ref": "rea-unflag",
+        "steps": [
+          {
+            "kind": "branch",
+            "branches": [
+              {
+                "condition": "unflag-eligible",
+                "steps": [
+                  {
+                    "kind": "effect",
+                    "ref": "unflag-cell"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "unflag-count"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "unflag-ok"
+                  }
+                ]
+              }
+            ],
+            "else_steps": [
+              {
+                "kind": "effect",
+                "ref": "unflag-reject"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "archetypes": {
+    "cell": {
+      "kind": "token"
+    }
+  },
+  "objects": {
+    "cell": {
+      "kind": "token",
+      "archetype_ref": "cell",
+      "name": "Logical cell",
+      "invocations": [
+        {
+          "id": "flag-cell",
+          "trigger": "flag",
+          "steps": [
+            {
+              "kind": "action",
+              "ref": "flag"
+            }
+          ],
+          "subject_bindings": [
+            {
+              "slot": "target",
+              "source": "using-object"
+            }
+          ],
+          "source_ref": "rea-flag"
+        },
+        {
+          "id": "unflag-cell",
+          "trigger": "unflag",
+          "steps": [
+            {
+              "kind": "action",
+              "ref": "unflag"
+            }
+          ],
+          "subject_bindings": [
+            {
+              "slot": "target",
+              "source": "using-object"
+            }
+          ],
+          "source_ref": "rea-unflag"
+        }
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "id": "flag-already-flagged",
+      "scene_ref": "flag-already-flagged-scene",
+      "source_ref": "oracle-flag-already-flagged",
+      "action_refs": [
+        "flag",
+        "unflag"
+      ],
+      "values": {
+        "rows": 2,
+        "columns": 3,
+        "mines": 1,
+        "flags": 1,
+        "generation": 1,
+        "undo-index": 0,
+        "undo-enabled": false,
+        "grid-initialized": false
+      },
+      "inventory": [
+        {
+          "instance_id": "cell-0-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-already-flagged-scene",
+            "source_ref": "oracle-flag-already-flagged"
+          }
+        },
+        {
+          "instance_id": "cell-0-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 1,
+            "cell-visible": "F"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-already-flagged-scene",
+            "source_ref": "oracle-flag-already-flagged"
+          }
+        },
+        {
+          "instance_id": "cell-0-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 2,
+            "cell-visible": "1"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-already-flagged-scene",
+            "source_ref": "oracle-flag-already-flagged"
+          }
+        },
+        {
+          "instance_id": "cell-1-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-already-flagged-scene",
+            "source_ref": "oracle-flag-already-flagged"
+          }
+        },
+        {
+          "instance_id": "cell-1-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 1,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-already-flagged-scene",
+            "source_ref": "oracle-flag-already-flagged"
+          }
+        },
+        {
+          "instance_id": "cell-1-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 2,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-already-flagged-scene",
+            "source_ref": "oracle-flag-already-flagged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "flag-revealed",
+      "scene_ref": "flag-revealed-scene",
+      "source_ref": "oracle-flag-revealed",
+      "action_refs": [
+        "flag",
+        "unflag"
+      ],
+      "values": {
+        "rows": 2,
+        "columns": 3,
+        "mines": 1,
+        "flags": 1,
+        "generation": 1,
+        "undo-index": 0,
+        "undo-enabled": false,
+        "grid-initialized": false
+      },
+      "inventory": [
+        {
+          "instance_id": "cell-0-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-revealed-scene",
+            "source_ref": "oracle-flag-revealed"
+          }
+        },
+        {
+          "instance_id": "cell-0-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 1,
+            "cell-visible": "F"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-revealed-scene",
+            "source_ref": "oracle-flag-revealed"
+          }
+        },
+        {
+          "instance_id": "cell-0-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 2,
+            "cell-visible": "1"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-revealed-scene",
+            "source_ref": "oracle-flag-revealed"
+          }
+        },
+        {
+          "instance_id": "cell-1-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-revealed-scene",
+            "source_ref": "oracle-flag-revealed"
+          }
+        },
+        {
+          "instance_id": "cell-1-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 1,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-revealed-scene",
+            "source_ref": "oracle-flag-revealed"
+          }
+        },
+        {
+          "instance_id": "cell-1-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 2,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-revealed-scene",
+            "source_ref": "oracle-flag-revealed"
+          }
+        }
+      ]
+    },
+    {
+      "id": "flag-success",
+      "scene_ref": "flag-success-scene",
+      "source_ref": "oracle-flag-success",
+      "action_refs": [
+        "flag",
+        "unflag"
+      ],
+      "values": {
+        "rows": 2,
+        "columns": 3,
+        "mines": 1,
+        "flags": 1,
+        "generation": 1,
+        "undo-index": 0,
+        "undo-enabled": false,
+        "grid-initialized": false
+      },
+      "inventory": [
+        {
+          "instance_id": "cell-0-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-success-scene",
+            "source_ref": "oracle-flag-success"
+          }
+        },
+        {
+          "instance_id": "cell-0-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 1,
+            "cell-visible": "F"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-success-scene",
+            "source_ref": "oracle-flag-success"
+          }
+        },
+        {
+          "instance_id": "cell-0-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 2,
+            "cell-visible": "1"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-success-scene",
+            "source_ref": "oracle-flag-success"
+          }
+        },
+        {
+          "instance_id": "cell-1-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-success-scene",
+            "source_ref": "oracle-flag-success"
+          }
+        },
+        {
+          "instance_id": "cell-1-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 1,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-success-scene",
+            "source_ref": "oracle-flag-success"
+          }
+        },
+        {
+          "instance_id": "cell-1-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 2,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "flag-success-scene",
+            "source_ref": "oracle-flag-success"
+          }
+        }
+      ]
+    },
+    {
+      "id": "repeated-sequence",
+      "scene_ref": "repeated-sequence-scene",
+      "source_ref": "oracle-repeated-sequence",
+      "action_refs": [
+        "flag",
+        "unflag"
+      ],
+      "values": {
+        "rows": 2,
+        "columns": 3,
+        "mines": 1,
+        "flags": 0,
+        "generation": 1,
+        "undo-index": 0,
+        "undo-enabled": false,
+        "grid-initialized": false
+      },
+      "inventory": [
+        {
+          "instance_id": "cell-0-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "repeated-sequence-scene",
+            "source_ref": "oracle-repeated-sequence"
+          }
+        },
+        {
+          "instance_id": "cell-0-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 1,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "repeated-sequence-scene",
+            "source_ref": "oracle-repeated-sequence"
+          }
+        },
+        {
+          "instance_id": "cell-0-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 2,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "repeated-sequence-scene",
+            "source_ref": "oracle-repeated-sequence"
+          }
+        },
+        {
+          "instance_id": "cell-1-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "repeated-sequence-scene",
+            "source_ref": "oracle-repeated-sequence"
+          }
+        },
+        {
+          "instance_id": "cell-1-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 1,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "repeated-sequence-scene",
+            "source_ref": "oracle-repeated-sequence"
+          }
+        },
+        {
+          "instance_id": "cell-1-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 2,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "repeated-sequence-scene",
+            "source_ref": "oracle-repeated-sequence"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unflag-success",
+      "scene_ref": "unflag-success-scene",
+      "source_ref": "oracle-unflag-success",
+      "action_refs": [
+        "flag",
+        "unflag"
+      ],
+      "values": {
+        "rows": 2,
+        "columns": 3,
+        "mines": 1,
+        "flags": 1,
+        "generation": 1,
+        "undo-index": 0,
+        "undo-enabled": false,
+        "grid-initialized": false
+      },
+      "inventory": [
+        {
+          "instance_id": "cell-0-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-success-scene",
+            "source_ref": "oracle-unflag-success"
+          }
+        },
+        {
+          "instance_id": "cell-0-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 1,
+            "cell-visible": "F"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-success-scene",
+            "source_ref": "oracle-unflag-success"
+          }
+        },
+        {
+          "instance_id": "cell-0-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 2,
+            "cell-visible": "1"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-success-scene",
+            "source_ref": "oracle-unflag-success"
+          }
+        },
+        {
+          "instance_id": "cell-1-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-success-scene",
+            "source_ref": "oracle-unflag-success"
+          }
+        },
+        {
+          "instance_id": "cell-1-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 1,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-success-scene",
+            "source_ref": "oracle-unflag-success"
+          }
+        },
+        {
+          "instance_id": "cell-1-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 2,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-success-scene",
+            "source_ref": "oracle-unflag-success"
+          }
+        }
+      ]
+    },
+    {
+      "id": "unflag-unflagged",
+      "scene_ref": "unflag-unflagged-scene",
+      "source_ref": "oracle-unflag-unflagged",
+      "action_refs": [
+        "flag",
+        "unflag"
+      ],
+      "values": {
+        "rows": 2,
+        "columns": 3,
+        "mines": 1,
+        "flags": 1,
+        "generation": 1,
+        "undo-index": 0,
+        "undo-enabled": false,
+        "grid-initialized": false
+      },
+      "inventory": [
+        {
+          "instance_id": "cell-0-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-unflagged-scene",
+            "source_ref": "oracle-unflag-unflagged"
+          }
+        },
+        {
+          "instance_id": "cell-0-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 1,
+            "cell-visible": "F"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-unflagged-scene",
+            "source_ref": "oracle-unflag-unflagged"
+          }
+        },
+        {
+          "instance_id": "cell-0-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 0,
+            "cell-column": 2,
+            "cell-visible": "1"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-unflagged-scene",
+            "source_ref": "oracle-unflag-unflagged"
+          }
+        },
+        {
+          "instance_id": "cell-1-0",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 0,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-unflagged-scene",
+            "source_ref": "oracle-unflag-unflagged"
+          }
+        },
+        {
+          "instance_id": "cell-1-1",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 1,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-unflagged-scene",
+            "source_ref": "oracle-unflag-unflagged"
+          }
+        },
+        {
+          "instance_id": "cell-1-2",
+          "object_ref": "cell",
+          "quantity": 1,
+          "values": {
+            "cell-row": 1,
+            "cell-column": 2,
+            "cell-visible": "#"
+          },
+          "invocations": [
+            {
+              "id": "flag-cell",
+              "trigger": "flag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "flag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-flag"
+            },
+            {
+              "id": "unflag-cell",
+              "trigger": "unflag",
+              "steps": [
+                {
+                  "kind": "action",
+                  "ref": "unflag"
+                }
+              ],
+              "subject_bindings": [
+                {
+                  "slot": "target",
+                  "source": "using-object"
+                }
+              ],
+              "source_ref": "rea-unflag"
+            }
+          ],
+          "provenance": {
+            "scene_ref": "unflag-unflagged-scene",
+            "source_ref": "oracle-unflag-unflagged"
+          }
+        }
+      ]
+    }
+  ]
+}

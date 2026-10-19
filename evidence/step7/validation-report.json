@@ -1,0 +1,132 @@
+{
+  "status": "pass",
+  "maturity": "G4",
+  "stages": [
+    {
+      "stage": "pin-integrity",
+      "status": "pass",
+      "details": {
+        "check": "dodge-pin-integrity",
+        "commit": "9af5804719bc4dc421d1cd76d3587f5b678d3f81",
+        "files": [
+          {
+            "path": "draft/v0.2.1/DODGE_SPEC.md",
+            "sha256": "3b32029aae2cea1a8c75f185ed631a4e3a2feca9272e1f34111fc4fde7174cb6",
+            "status": "pass"
+          },
+          {
+            "path": "draft/v0.2.1/IMPLEMENTATION_GUIDE.md",
+            "sha256": "4f27e0b98c8dcded96666cd3c23ce77839481b231bd152610756bc0a1253f264",
+            "status": "pass"
+          },
+          {
+            "path": "draft/v0.2.1/README.md",
+            "sha256": "cdfd5fa881f911083d3b5774a9decac8a1eb9226d0702f58027133faf0c2f7da",
+            "status": "pass"
+          },
+          {
+            "path": "draft/v0.2.1/schemas/dodge-export-contract.schema.v0.2.1.json",
+            "sha256": "3e0159ce8ab4cf2f6f820c799364cf466b951afe4bf33ab0bbb6c82a7acb41f6",
+            "status": "pass"
+          },
+          {
+            "path": "draft/v0.2.1/schemas/dodge-target-manifest.schema.v0.2.1.json",
+            "sha256": "2e5e8c9fa4a93aab39e4301da692e84fdbd0247cc6dd65d6f1a1576468643e40",
+            "status": "pass"
+          },
+          {
+            "path": "draft/v0.2.1/schemas/dodge.schema.v0.2.1.json",
+            "sha256": "270da57228139022d265082cad4d708aff1ba16a710d641a4f2144c7402a2ca9",
+            "status": "pass"
+          }
+        ],
+        "conformance_claim": "none"
+      }
+    },
+    {
+      "stage": "G1-schema",
+      "status": "pass",
+      "details": null
+    },
+    {
+      "stage": "G2-core",
+      "status": "pass",
+      "details": {
+        "profile_id": "dodge-core",
+        "version": "0.2.1",
+        "stage": "core",
+        "1_references": "pass",
+        "2_kind_face_agreement": "pass; token subset, no faces",
+        "3_cycles": "pass; explicit action/procedure DFS; collections rejected",
+        "4_quantities_dimensions": "pass; positive quantities; physical components rejected",
+        "5_source_hashes": "pass",
+        "6_scoped_identity": "pass",
+        "7_topology_edges": "not-applicable; topology input rejected",
+        "8_reference_kinds": "pass",
+        "9_types_defaults_bounds": "pass",
+        "10_order_end_conditions": "pass; ordered branches/effects; phases/end loops rejected",
+        "11_ai": "not-applicable; AI input rejected",
+        "12_target_contract": "not-applicable; no exporter invoked",
+        "invocations": "pass; direct token inheritance, unique IDs/slots, explicit target and availability",
+        "conditional_features": "representations/equipment/modifiers/etc rejected when supplied"
+      }
+    },
+    {
+      "stage": "G3-required-source-profile",
+      "status": "pass",
+      "details": {
+        "profile_id": "rea-minesweeper-flags",
+        "version": "0.1.0",
+        "stage": "source",
+        "validator_sha256": "9dc7546f554c157be52eddd648bed9b6e5a1ae50fa889aab3b40bb898ffaae48",
+        "validated_sha256": "7edeed1f3ec4145a5a55c216be220e23fd6de23ac99d2c68001ece91cd32e1bd",
+        "results": {
+          "fixture_count": 6,
+          "messages": {
+            "0": "Make a move.",
+            "2": "Can only flag an unknown cell.",
+            "8": "Can only unflag a flagged cell."
+          },
+          "scope": "direct calls; valid 2x3 synthetic state; undo disabled"
+        }
+      }
+    },
+    {
+      "stage": "G4-generic-resolved",
+      "status": "pass",
+      "details": {
+        "exact_downstream_model": "pass",
+        "ordered_scenarios": 6
+      }
+    },
+    {
+      "stage": "G4-required-resolved-profile",
+      "status": "pass",
+      "details": {
+        "profile_id": "rea-minesweeper-flags",
+        "version": "0.1.0",
+        "stage": "resolved-game",
+        "status": "pass",
+        "validator_sha256": "9dc7546f554c157be52eddd648bed9b6e5a1ae50fa889aab3b40bb898ffaae48",
+        "validated_sha256": "7d474846592d735385f4e041fb5eef423a274b278ced326d0c3082ac28caa5f9"
+      }
+    }
+  ],
+  "toolchain_sha256": {
+    "assemble_flags.py": "f6be67e1acc68ca5bb1ece16fbda206c9a233309a335e5ae11315ae40196646c",
+    "build_flags.py": "d072ee0296afe6bdc7d407bf5916fd73094a41a6c97f1b92f6a633f9fa5a172f",
+    "capture_flag_oracle.py": "d87595bcc62b474153b594ec3ca56ed98eaffd07485008d61c4bf4fda9929fa3",
+    "capture_rea.py": "1f624ee82c6609479c0540bcc89be995fb4d205aa5569579402dced89659394a",
+    "check_flag_gates.py": "4f6fe6747b8c4d2efa2509cbce806cc2b74b1cbb25dd073e765524a96a054be3",
+    "dodge_common.py": "a4e7f579765c5a00becddd5c2bb6351a13d9a65df2c7aa20880aa29579d2327e",
+    "dodge_core.py": "c08395d826b67f658b30819027d4c535497079215e9cca270a280a63965f0f84",
+    "flag_profile.py": "9dc7546f554c157be52eddd648bed9b6e5a1ae50fa889aab3b40bb898ffaae48",
+    "flag_source_map.py": "f2b21cd383a00415ac68fbf66f71b5a89d6eff1b6c21966695839fef9f460b18",
+    "resolve_flags.py": "1984499bb639a864ede92e16528e04bde7586488ff226c6a4e3262d0525f6984",
+    "verify_dodge_pin.py": "5a8e253c8d158fc73f34366f487bc552e7ab4481db6d2b4e736128ea200dd588",
+    "verify_step3.py": "65af8c55ba94c737b1d62035edda3b6cbebc8aa25610d03c9e6262dd9bba682b"
+  },
+  "candidate_sha256": "7edeed1f3ec4145a5a55c216be220e23fd6de23ac99d2c68001ece91cd32e1bd",
+  "resolved_sha256": "7d474846592d735385f4e041fb5eef423a274b278ced326d0c3082ac28caa5f9",
+  "hashing": "UTF-8 canonical JSON: sorted keys, compact separators, no newline"
+}
