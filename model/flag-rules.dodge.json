@@ -1,0 +1,412 @@
+{
+  "dodge_version": "0.2.1",
+  "document_id": "rea.minesweeper.flags",
+  "game_id": "rea-minesweeper-flags",
+  "title": "Native flag/unflag comparison slice",
+  "sources": {
+    "rea-flag": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_flag.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    },
+    "rea-unflag": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_unflag.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    },
+    "rea-getter": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_get_visible.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    },
+    "rea-setter": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_set_visible.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    },
+    "rea-init": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_init.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    },
+    "flag-profile": {
+      "kind": "semantic_validator",
+      "uri": "tools/flag_profile.py",
+      "version": "0.1.0",
+      "authority": "authoritative"
+    },
+    "evidence-lock": {
+      "kind": "rules",
+      "uri": "model/evidence-lock.json",
+      "version": "1",
+      "authority": "reference"
+    },
+    "rea-index": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_index.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    },
+    "rea-setter-noundo": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/msw_set_visible_noundo.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    },
+    "rea-caller": {
+      "kind": "rules",
+      "uri": "evidence/step5/rea/run_game.json",
+      "version": "milestone-5",
+      "authority": "reference"
+    }
+  },
+  "archetypes": {
+    "cell": {
+      "kind": "token"
+    }
+  },
+  "objects": {
+    "cell": {
+      "kind": "token",
+      "archetype_ref": "cell",
+      "name": "Logical cell",
+      "invocations": [
+        {
+          "id": "flag-cell",
+          "trigger": "flag",
+          "steps": [
+            {
+              "kind": "action",
+              "ref": "flag"
+            }
+          ],
+          "subject_bindings": [
+            {
+              "slot": "target",
+              "source": "using-object"
+            }
+          ],
+          "source_ref": "rea-flag"
+        },
+        {
+          "id": "unflag-cell",
+          "trigger": "unflag",
+          "steps": [
+            {
+              "kind": "action",
+              "ref": "unflag"
+            }
+          ],
+          "subject_bindings": [
+            {
+              "slot": "target",
+              "source": "using-object"
+            }
+          ],
+          "source_ref": "rea-unflag"
+        }
+      ]
+    }
+  },
+  "scenes": {},
+  "scenarios": {},
+  "rules": {
+    "values": {
+      "cell-visible": {
+        "type": "enum",
+        "owner_scope": "object",
+        "persistence_scope": "scenario",
+        "enum_values": [
+          "#",
+          "F",
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ]
+      },
+      "cell-row": {
+        "type": "integer",
+        "owner_scope": "object",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "cell-column": {
+        "type": "integer",
+        "owner_scope": "object",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "result": {
+        "type": "enum",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "enum_values": [
+          0,
+          2,
+          8
+        ]
+      },
+      "rows": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "columns": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "mines": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "flags": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "generation": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "undo-index": {
+        "type": "integer",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario",
+        "minimum": 0
+      },
+      "undo-enabled": {
+        "type": "boolean",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario"
+      },
+      "grid-initialized": {
+        "type": "boolean",
+        "owner_scope": "scenario",
+        "persistence_scope": "scenario"
+      }
+    },
+    "conditions": {
+      "flag-eligible": {
+        "op": "eq",
+        "left": {
+          "ref": "cell-visible",
+          "subject": {
+            "relative": "target"
+          }
+        },
+        "right": "#",
+        "source_ref": "rea-flag"
+      },
+      "unflag-eligible": {
+        "op": "eq",
+        "left": {
+          "ref": "cell-visible",
+          "subject": {
+            "relative": "target"
+          }
+        },
+        "right": "F",
+        "source_ref": "rea-unflag"
+      }
+    },
+    "effects": {
+      "flag-cell": {
+        "op": "set",
+        "target_ref": "cell-visible",
+        "subject": {
+          "relative": "target"
+        },
+        "value": "F",
+        "source_ref": "rea-flag"
+      },
+      "flag-count": {
+        "op": "add",
+        "target_ref": "flags",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 1,
+        "source_ref": "rea-flag"
+      },
+      "flag-ok": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 0,
+        "source_ref": "rea-flag"
+      },
+      "flag-reject": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 2,
+        "source_ref": "rea-flag"
+      },
+      "unflag-cell": {
+        "op": "set",
+        "target_ref": "cell-visible",
+        "subject": {
+          "relative": "target"
+        },
+        "value": "#",
+        "source_ref": "rea-unflag"
+      },
+      "unflag-count": {
+        "op": "subtract",
+        "target_ref": "flags",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 1,
+        "source_ref": "rea-unflag"
+      },
+      "unflag-ok": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 0,
+        "source_ref": "rea-unflag"
+      },
+      "unflag-reject": {
+        "op": "set",
+        "target_ref": "result",
+        "subject": {
+          "relative": "scenario"
+        },
+        "value": 8,
+        "source_ref": "rea-unflag"
+      }
+    },
+    "actions": {
+      "flag": {
+        "name": "Flag",
+        "target": {
+          "relative": "target"
+        },
+        "procedure_ref": "flag-procedure",
+        "source_ref": "rea-flag"
+      },
+      "unflag": {
+        "name": "Unflag",
+        "target": {
+          "relative": "target"
+        },
+        "procedure_ref": "unflag-procedure",
+        "source_ref": "rea-unflag"
+      }
+    },
+    "procedures": {
+      "flag-procedure": {
+        "name": "Flag result",
+        "source_ref": "rea-flag",
+        "steps": [
+          {
+            "kind": "branch",
+            "branches": [
+              {
+                "condition": "flag-eligible",
+                "steps": [
+                  {
+                    "kind": "effect",
+                    "ref": "flag-cell"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "flag-count"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "flag-ok"
+                  }
+                ]
+              }
+            ],
+            "else_steps": [
+              {
+                "kind": "effect",
+                "ref": "flag-reject"
+              }
+            ]
+          }
+        ]
+      },
+      "unflag-procedure": {
+        "name": "Unflag result",
+        "source_ref": "rea-unflag",
+        "steps": [
+          {
+            "kind": "branch",
+            "branches": [
+              {
+                "condition": "unflag-eligible",
+                "steps": [
+                  {
+                    "kind": "effect",
+                    "ref": "unflag-cell"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "unflag-count"
+                  },
+                  {
+                    "kind": "effect",
+                    "ref": "unflag-ok"
+                  }
+                ]
+              }
+            ],
+            "else_steps": [
+              {
+                "kind": "effect",
+                "ref": "unflag-reject"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "validation": {
+    "core_profile": {
+      "profile_id": "dodge-core",
+      "version": "0.2.1"
+    },
+    "required_profiles": [
+      {
+        "profile_id": "rea-minesweeper-flags",
+        "version": "0.1.0",
+        "kind": "application",
+        "stages": [
+          "source",
+          "resolved-game"
+        ],
+        "validator_source_ref": "flag-profile"
+      }
+    ]
+  }
+}

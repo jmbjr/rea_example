@@ -1,0 +1,20 @@
+{
+  "files": {
+    "evidence/step5/rea/msw_flag.json": "72a4e24eda7357b251d66d9377c73bd40c4b96ae4acbce6741ee98972a82ed56",
+    "evidence/step5/rea/msw_get_visible.json": "142bcc299c17b72a2f0d8ca62e6893f214bea60cec57b9b008c40e219a57b2c1",
+    "evidence/step5/rea/msw_index.json": "eeb943394eb2b06c1153031be58ea10124797ec61edb30926cc5cdf8dd4114a9",
+    "evidence/step5/rea/msw_init.json": "b551c53f47ceb5d60a734650e69f5cd956f9569907192a93cacecf2502dd2da7",
+    "evidence/step5/rea/msw_set_visible.json": "848be7263d9be6a4f6259d8b5ac6d5abc2e0e09687f276487034a51e530032fd",
+    "evidence/step5/rea/msw_set_visible_noundo.json": "07530ff743540125038e0ca17223f57f88f2bbb2231cf41692ac85ddaf2f8260",
+    "evidence/step5/rea/msw_unflag.json": "33894017c336f3030c102604862a139ca59e41552f2b8b043349719791d25fb3",
+    "evidence/step5/rea/run_game.json": "eab925ca37be60ed60139628fcbdffdccc8fe4445cdab98a662c7667d887da6d",
+    "evidence/step5/oracle/flag-already-flagged.json": "9a8f87e794c3558deef7934a0bf41b9f647889b564fbacac50ddb468fb3bf4c4",
+    "evidence/step5/oracle/flag-revealed.json": "48d22a4817336c186cc612b48b90ce68e03f69b8fb3c1252e029a25add8791a8",
+    "evidence/step5/oracle/flag-success.json": "f50800b4baeac18984fcd4d74dac0d818b8467e5b7dca64bc5e19d5552d9470c",
+    "evidence/step5/oracle/repeated-sequence.json": "2e0b457ed719ee44fcc4cc18148b29d3bf904a3e2c7928fb1afaf61b7353210c",
+    "evidence/step5/oracle/unflag-success.json": "52178f3fc9d8134f8e40549622b891c58abe5f8bb52967e5d6aa473a2c97d092",
+    "evidence/step5/oracle/unflag-unflagged.json": "d5b01915709a559b7521ab3308843d863dd16bf4dc25d121886daac3cbaf0a4e"
+  },
+  "oracle_sha256": "0dffd8e23302e47c47e89f6ef534ff77e055eef0d075927bc9e51078404914c0",
+  "rea_baseline_sha256": "fb83433214e68ae8e82409266ff5818a82906db063ec7a0772382536213ec7aa"
+}

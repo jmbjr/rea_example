@@ -1,0 +1,79 @@
+name: DODGE flags validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/dodge-flags.yml'
+      - 'model/**'
+      - 'spec/**'
+      - 'requirements-dodge.txt'
+      - 'tools/assemble_flags.py'
+      - 'tools/build_flags.py'
+      - 'tools/check_flag_gates.py'
+      - 'tools/dodge_common.py'
+      - 'tools/dodge_core.py'
+      - 'tools/flag_profile.py'
+      - 'tools/flag_source_map.py'
+      - 'tools/resolve_flags.py'
+      - 'tools/verify_dodge_pin.py'
+      - 'evidence/step5/**'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Install locked validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/dodge
+          python3 -m venv "$RUNNER_TEMP/dodge-venv"
+          "$RUNNER_TEMP/dodge-venv/bin/python" -m pip install -r requirements-dodge.txt
+          "$RUNNER_TEMP/dodge-venv/bin/python" --version > build/dodge/python-version.txt
+          "$RUNNER_TEMP/dodge-venv/bin/python" -m pip freeze > build/dodge/dependencies.txt
+      - name: Acquire the exact DODGE revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/jmbjr/DODGE.git "$RUNNER_TEMP/dodge-spec"
+          git -C "$RUNNER_TEMP/dodge-spec" checkout --detach 9af5804719bc4dc421d1cd76d3587f5b678d3f81
+          "$RUNNER_TEMP/dodge-venv/bin/python" tools/verify_dodge_pin.py "$RUNNER_TEMP/dodge-spec"
+      - name: Validate and resolve this candidate; prove fatal gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/dodge-venv/bin/python" tools/check_flag_gates.py "$RUNNER_TEMP/dodge-spec" build/dodge | tee build/dodge/checks.log
+          "$RUNNER_TEMP/dodge-venv/bin/python" - <<'PY'
+          import json
+          from pathlib import Path
+          for marker, file in [('M7_ACCEPTANCE', 'acceptance.json'), ('M7_REPORT', 'positive/validation-report.json')]:
+              print(marker + ' ' + json.dumps(json.loads((Path('build/dodge') / file).read_text()), separators=(',', ':')))
+          PY
+      - name: Retain validation evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: dodge-flags-validation
+          path: build/dodge/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Summarize
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## Bounded DODGE flags model'
+            echo 'The artifact contains the actual assembled candidate, neutral resolved model, source map, stage reports and negative evidence.'
+            echo 'This workflow does not execute actions or publish a game. Runtime comparison is milestone 8.'
+            if test -f build/dodge/acceptance.json; then
+              echo '~~~json'
+              cat build/dodge/acceptance.json
+              echo '~~~'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
