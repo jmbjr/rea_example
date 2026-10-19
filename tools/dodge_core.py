@@ -45,7 +45,108 @@ def validate_core(d, root):
                           'minimum', 'maximum', 'enum_values', 'default', 'source_ref', 'authority'])
         require(definition['owner_scope'] in ['object', 'scenario'], 'unsupported owner')
         require(definition['persistence_scope'] == 'scenario', 'unsupported persistence')
-        require(definition.get('minimum', float('-inf')) <= definition.get('maximum', float('inf')), 'inverted bo…1515 tokens truncated… in scene['instances']}
+        require(definition.get('minimum', float('-inf')) <= definition.get('maximum', float('inf')), 'inverted bounds')
+        if definition['type'] == 'enum':
+            require(bool(definition.get('enum_values')), 'enum values missing')
+        if 'default' in definition:
+            matches(definition, definition['default'])
+        trace(definition)
+    for condition in rules['conditions'].values():
+        keys(condition, ['op', 'left', 'right', 'source_ref'], ['op', 'left', 'right'])
+        require(condition['op'] == 'eq', 'unsupported predicate')
+        operand = condition['left']
+        keys(operand, ['ref', 'subject'], ['ref', 'subject'])
+        require(operand['ref'] in values, 'operand reference wrong kind or missing')
+        definition = values[operand['ref']]
+        subject(operand['subject'], definition['owner_scope'])
+        matches(definition, condition['right'])
+        trace(condition)
+    for effect in rules['effects'].values():
+        keys(effect, ['op', 'target_ref', 'subject', 'value', 'source_ref'], ['op', 'target_ref', 'subject', 'value'])
+        require(effect['op'] in ['set', 'add', 'subtract'], 'unsupported effect')
+        require(effect['target_ref'] in values, 'effect target wrong kind or missing')
+        definition = values[effect['target_ref']]
+        subject(effect['subject'], definition['owner_scope'])
+        if effect['op'] == 'set':
+            matches(definition, effect['value'])
+        else:
+            require(definition['type'] in ['integer', 'number'], 'numeric effect on nonnumeric state')
+            require(type(effect['value']) in ([int] if definition['type'] == 'integer' else [int, float]), 'invalid numeric delta')
+        trace(effect)
+    graph = {ref: [] for section in ['actions', 'procedures'] for ref in rules[section]}
+
+    def steps(items, parent, allowed=('effect', 'procedure', 'action', 'branch')):
+        require(bool(items), 'empty executable sequence')
+        for step in items:
+            kind = step['kind']
+            require(kind in allowed, 'unsupported step')
+            if kind == 'branch':
+                keys(step, ['kind', 'branches', 'else_steps'], ['branches', 'else_steps'])
+                for branch in step['branches']:
+                    keys(branch, ['condition', 'steps'], ['condition', 'steps'])
+                    require(type(branch['condition']) is str and branch['condition'] in rules['conditions'], 'branch condition wrong kind or missing')
+                    steps(branch['steps'], parent)
+                steps(step['else_steps'], parent)
+            else:
+                keys(step, ['kind', 'ref'], ['ref'])
+                require(step['ref'] in rules[kind + 's'], 'step reference wrong kind or missing')
+                if kind in ('action', 'procedure'):
+                    graph[parent].append(step['ref'])
+    for name, procedure in rules['procedures'].items():
+        keys(procedure, ['name', 'steps', 'source_ref'], ['steps'])
+        trace(procedure)
+        steps(procedure['steps'], name)
+    for name, action in rules['actions'].items():
+        keys(action, ['name', 'target', 'procedure_ref', 'source_ref'], ['target', 'procedure_ref'])
+        require(action['target'] == {'relative': 'target'}, 'unsupported action target')
+        require(action['procedure_ref'] in rules['procedures'], 'action procedure wrong kind or missing')
+        graph[name].append(action['procedure_ref'])
+        trace(action)
+    active, visited = set(), set()
+    def visit(node):
+        require(node not in active, 'procedure/action reference cycle')
+        if node in visited:
+            return
+        active.add(node)
+        for child in graph[node]:
+            visit(child)
+        active.remove(node)
+        visited.add(node)
+    for node in graph:
+        visit(node)
+    for archetype in d['archetypes'].values():
+        keys(archetype, ['kind'])
+        require(archetype['kind'] == 'token', 'unsupported archetype kind')
+    for obj in d['objects'].values():
+        keys(obj, ['kind', 'archetype_ref', 'name', 'invocations'], ['invocations'])
+        require(obj['archetype_ref'] in d['archetypes'], 'missing archetype')
+        require(obj['kind'] == d['archetypes'][obj['archetype_ref']]['kind'], 'object/archetype mismatch')
+        unique([inv['id'] for inv in obj['invocations']], 'invocation ID')
+        unique([inv['trigger'] for inv in obj['invocations']], 'invocation trigger in supported adapter')
+        for inv in obj['invocations']:
+            keys(inv, ['id', 'trigger', 'steps', 'subject_bindings', 'source_ref'], ['subject_bindings'])
+            trace(inv)
+            unique([x['slot'] for x in inv['subject_bindings']], 'subject slot')
+            require(inv['subject_bindings'] == [{'slot': 'target', 'source': 'using-object'}], 'missing/unsupported target context')
+            # This subset exposes only explicitly referenced actions, not inferred ID matching.
+            for step in inv['steps']:
+                keys(step, ['kind', 'ref'], ['kind', 'ref'])
+                require(step['kind'] == 'action' and step['ref'] in rules['actions'], 'invocation action reference')
+    for scene in d['scenes'].values():
+        keys(scene, ['name', 'source_ref', 'instances'])
+        trace(scene)
+        unique([x['id'] for x in scene['instances']], 'scene instance ID')
+        for inst in scene['instances']:
+            keys(inst, ['id', 'object_ref', 'quantity'], ['quantity'])
+            require(inst['object_ref'] in d['objects'], 'missing object')
+            require(type(inst['quantity']) is int and inst['quantity'] >= 1, 'invalid quantity')
+    require(bool(d['scenarios']), 'no selected scenarios')
+    for scenario in d['scenarios'].values():
+        keys(scenario, ['name', 'scene_ref', 'source_ref', 'action_refs', 'initial_state', 'authority', 'assumptions'], ['initial_state', 'action_refs'])
+        trace(scenario)
+        require(scenario['scene_ref'] in d['scenes'], 'missing selected scene')
+        scene = d['scenes'][scenario['scene_ref']]
+        ids = {x['id'] for x in scene['instances']}
         unique(scenario['action_refs'], 'available action')
         require(set(scenario['action_refs']) <= set(rules['actions']), 'missing available action')
         seen = []
