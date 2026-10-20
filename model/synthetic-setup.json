@@ -1,0 +1,7 @@
+{
+  "version": "1",
+  "scenario_id": "synthetic-hidden-cell",
+  "base_case": "flag-revealed",
+  "visible": "#F####",
+  "purpose": "Authority perturbation only: replace the revealed cell with an unknown cell. Not an unchanged native oracle case."
+}

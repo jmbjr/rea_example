@@ -5,7 +5,7 @@ import argparse
 import json
 from dodge_common import file_hash, fixture_records, read_json
 
-def assemble(root):
+def assemble(root, synthetic=False):
     root = Path(root)
     document = deepcopy(read_json(root / 'model/flag-rules.dodge.json'))
     for source in document['sources'].values():
@@ -34,6 +34,9 @@ def assemble(root):
         document['scenarios'][case] = dict(name=case, scene_ref=scene_id, source_ref=source_ref,
             action_refs=['flag', 'unflag'], initial_state=bindings, authority='derived',
             assumptions=['Synthetic fixture scope; command-list exhaustion is not a Minesweeper end condition.'])
+    if synthetic:
+        from synthetic_setup import add_synthetic_setup
+        add_synthetic_setup(document, root)
     return document
 
 if __name__ == '__main__':

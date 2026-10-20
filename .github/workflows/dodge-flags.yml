@@ -6,6 +6,10 @@ on:
     paths:
       - '.github/workflows/dodge-flags.yml'
       - 'model/**'
+      - 'python/**'
+      - 'tools/check_flag_runtime.py'
+      - 'tools/synthetic_setup.py'
+      - 'tools/package_flag_source.py'
       - 'spec/**'
       - 'requirements-dodge.txt'
       - 'tools/assemble_flags.py'
@@ -55,6 +59,18 @@ jobs:
           for marker, file in [('M7_ACCEPTANCE', 'acceptance.json'), ('M7_REPORT', 'positive/validation-report.json')]:
               print(marker + ' ' + json.dumps(json.loads((Path('build/dodge') / file).read_text()), separators=(',', ':')))
           PY
+      - name: Execute and compare the bounded Python reconstruction
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/dodge-venv/bin/python" tools/check_flag_runtime.py "$RUNNER_TEMP/dodge-spec" build/dodge/runtime | tee build/dodge/runtime-checks.log
+          "$RUNNER_TEMP/dodge-venv/bin/python" tools/package_flag_source.py build/dodge/rea-example-python-source.zip
+          "$RUNNER_TEMP/dodge-venv/bin/python" - <<'PYMARK'
+          import json
+          from pathlib import Path
+          for marker, file in [('M8_ACCEPTANCE', 'runtime/runtime-acceptance.json'), ('M8_PERTURBATION', 'runtime/perturbation.json')]:
+              print(marker + ' ' + json.dumps(json.loads((Path('build/dodge') / file).read_text()), separators=(',', ':')))
+          PYMARK
       - name: Retain validation evidence even on failure
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -70,7 +86,7 @@ jobs:
           {
             echo '## Bounded DODGE flags model'
             echo 'The artifact contains the actual assembled candidate, neutral resolved model, source map, stage reports and negative evidence.'
-            echo 'This workflow does not execute actions or publish a game. Runtime comparison is milestone 8.'
+            echo 'This workflow executes the bounded flag slice and compares it against native evidence; it does not publish a full game.'
             if test -f build/dodge/acceptance.json; then
               echo '~~~json'
               cat build/dodge/acceptance.json

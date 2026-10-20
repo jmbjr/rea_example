@@ -37,7 +37,7 @@
     "flag-profile": {
       "kind": "semantic_validator",
       "uri": "tools/flag_profile.py",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "authority": "authoritative"
     },
     "evidence-lock": {
@@ -399,7 +399,7 @@
     "required_profiles": [
       {
         "profile_id": "rea-minesweeper-flags",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "kind": "application",
         "stages": [
           "source",

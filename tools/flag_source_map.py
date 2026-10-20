@@ -18,6 +18,8 @@ def source_map(document, root):
                        **{'undo-index': 'undo_index', 'undo-enabled': 'undo_enabled', 'grid-initialized': 'grid_initialized'})
     for scenario_id, scenario in document['scenarios'].items():
         source = document['sources'][scenario['source_ref']]
+        synthetic = source['version'] == 'synthetic-1'
+        config = read_json(root / source['uri']) if synthetic else None
         columns = next(b['value'] for b in scenario['initial_state'] if b['ref'] == 'columns')
         instances = document['scenes'][scenario['scene_ref']]['instances']
         for index, binding in enumerate(scenario['initial_state']):
@@ -31,6 +33,18 @@ def source_map(document, root):
                     entry.update(derivation='divmod(character_index, setup.columns)', columns=columns)
             else:
                 entry['decoded_pointer'] = '/setup/' + field_names[binding['ref']]
+            if synthetic:
+                entry.pop('decode', None)
+                entry.pop('decoded_line', None)
+                entry.pop('decoded_pointer', None)
+                entry['source_pointer'] = '/visible'
+                entry['synthetic'] = True
+                if binding['ref'] == 'flags':
+                    entry['derivation'] = 'count F in declared synthetic visible input'
+                elif binding['ref'] not in ['cell-visible']:
+                    base_ref = document['scenarios'][config['base_case']]['source_ref']
+                    entry.update(base_source_ref=base_ref, base_source_sha256=document['sources'][base_ref]['sha256'],
+                                 base_pointer='/runs/0/stdout', base_decode='JSON Lines; line 0 /setup')
             entries.append(entry)
     return dict(source_map_version=1, candidate_sha256=digest(document), entries=entries,
                 authority='derived diagnostic; never executed as rules')

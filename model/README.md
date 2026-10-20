@@ -6,4 +6,4 @@
 
 The two cell invocations bind their target explicitly. Their referenced actions select branch procedures. Every success branch sets the cell, adjusts the scenario counter, and sets an output result; rejection sets only the result. The result binding is an execution output, not recovered persistent native game state.
 
-No Python transition executor or playable UI exists yet. The Python in this milestone assembles, validates and resolves data.
+The [Python executor](../docs/PYTHON_FLAGS.md) consumes the validated resolved model. Optional `synthetic-setup.json` supplies a separately labeled authority perturbation; it does not replace the six immutable native fixtures.

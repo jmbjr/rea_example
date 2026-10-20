@@ -16,7 +16,7 @@ def load_profile(d, root):
     requirements = d['validation']['required_profiles']
     require(len(requirements) == 1, 'selected slice requires one application profile')
     requirement = requirements[0]
-    require(requirement == dict(profile_id='rea-minesweeper-flags', version='0.1.0', kind='application',
+    require(requirement == dict(profile_id='rea-minesweeper-flags', version='0.2.0', kind='application',
             stages=['source', 'resolved-game'], validator_source_ref='flag-profile'), 'missing/unsupported/version-mismatched required profile')
     source = d['sources'][requirement['validator_source_ref']]
     require(source['kind'] == 'semantic_validator' and source['version'] == requirement['version'], 'validator kind/version mismatch')

@@ -1,6 +1,6 @@
 # Bounded validation and resolution
 
-This pipeline implements milestone 7 for the direct flag/unflag comparison slice. It is not a general DODGE implementation. The required application profile is `rea-minesweeper-flags@0.1.0` at both source and resolved-game stages.
+This pipeline implements milestone 7 for the direct flag/unflag comparison slice. It is not a general DODGE implementation. The required application profile is `rea-minesweeper-flags@0.2.0` at both source and resolved-game stages.
 
 ## Run
 
@@ -66,4 +66,4 @@ Acceptance builds twice and compares canonical resolved bytes. The 30 negative c
 
 Hashes use UTF-8 JSON with sorted object keys, compact separators and no newline. Arrays retain semantic order. Source file hashes use original bytes. The hosted artifact includes the actual candidate, resolved model, stage coverage, source map, dependency versions, and each negative case's report. Only a successful hosted run for this candidate can establish milestone completion.
 
-The next milestone adds a generic Python executor and native equivalence checks. This milestone does not claim G5/G6, playable Minesweeper, whole-game conformance, or a fix for the upstream CLI crash.
+The separate [Python runtime acceptance stage](PYTHON_FLAGS.md) consumes only the admitted G4 output and checks bounded G5 behavior. Validation alone does not establish execution equivalence. Neither stage claims whole-game conformance or a fix for the upstream CLI crash.

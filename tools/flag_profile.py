@@ -2,14 +2,14 @@
 from dodge_common import file_hash, fixture_records, keys, local_path, read_json, require
 
 PROFILE_ID = 'rea-minesweeper-flags'
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 STATE_FIELDS = {'rows': 'rows', 'columns': 'columns', 'mines': 'mines', 'flags': 'flags',
                 'generation': 'generation', 'undo-index': 'undo_index',
                 'undo-enabled': 'undo_enabled', 'grid-initialized': 'grid_initialized'}
 NATIVE_FIELDS = {'rows': 2, 'columns': 3, 'mines': 1, 'generation': 1, 'undo_index': 0,
                  'undo_enabled': False, 'grid_initialized': False}
 
-def validate_source(d, root):
+def _validate_original_source(d, root):
     lock = read_json(root / 'model/evidence-lock.json')
     for uri, sha in lock['files'].items():
         require(file_hash(local_path(root, uri)) == sha, 'retained evidence differs from lock')
@@ -108,6 +108,43 @@ def validate_source(d, root):
         require(scenario['initial_state'] == expected_bindings, 'fixture projection/binding order differs from source')
     require(set(messages) == {0, 2, 8}, 'result/message coverage incomplete')
     return {'fixture_count': 6, 'messages': messages, 'scope': 'direct calls; valid 2x3 synthetic state; undo disabled'}
+
+def validate_source(d, root):
+    if 'synthetic-setup' not in d['sources']:
+        return _validate_original_source(d, root)
+    from copy import deepcopy
+    source = d['sources']['synthetic-setup']
+    require(source['kind'] == 'scenario' and source['uri'] == 'model/synthetic-setup.json' and
+            source['version'] == 'synthetic-1', 'synthetic source identity mismatch')
+    config = read_json(root / source['uri'])
+    keys(config, ['version', 'scenario_id', 'base_case', 'visible', 'purpose'],
+         ['version', 'scenario_id', 'base_case', 'visible', 'purpose'])
+    require(config['version'] == '1', 'unsupported synthetic setup')
+    require(type(config['visible']) is str and len(config['visible']) == 6 and
+            set(config['visible']) <= set('#F012345678'), 'invalid synthetic visible input')
+    variant = d['scenarios'][config['scenario_id']]
+    original = deepcopy(d)
+    original['scenarios'].pop(config['scenario_id'])
+    original['scenes'].pop(variant['scene_ref'])
+    result = _validate_original_source(original, root)
+    require(config['base_case'] in original['scenarios'], 'synthetic base is not an original fixture')
+    base = original['scenarios'][config['base_case']]
+    base_scene = original['scenes'][base['scene_ref']]
+    expected = deepcopy(base)
+    expected.update(name=config['scenario_id'], source_ref='synthetic-setup', scene_ref=config['scenario_id'] + '-scene',
+                    assumptions=['Synthetic input perturbation; not native equivalence evidence.'])
+    # Independently check the variant projection, without calling its assembler.
+    visible_bindings = [b for b in expected['initial_state'] if b['ref'] == 'cell-visible']
+    for index, binding in enumerate(visible_bindings):
+        binding['value'] = config['visible'][index]
+    next(b for b in expected['initial_state'] if b['ref'] == 'flags')['value'] = config['visible'].count('F')
+    from dodge_common import digest
+    require(digest(variant) == digest(expected), 'synthetic setup projection changed')
+    expected_scene = deepcopy(base_scene)
+    expected_scene.update(name=config['scenario_id'], source_ref='synthetic-setup')
+    require(digest(d['scenes'][variant['scene_ref']]) == digest(expected_scene), 'synthetic scene projection changed')
+    result['synthetic_scenario'] = config['scenario_id']
+    return result
 
 def validate_resolved(d, r, root):
     validate_source(d, root)
