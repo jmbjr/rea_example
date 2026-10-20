@@ -1,0 +1,67 @@
+{
+  "label": "synthetic input variant; not unchanged-native equivalence",
+  "source": "model/synthetic-setup.json",
+  "source_sha256": "c43ee9209493178bb9f3214dc35eb66bf02fec557ad47f533648df799b0ce8a8",
+  "candidate_sha256": "7c0b097207bbc9854fc53ed4474052da5951cb7cc04d2c697949513fe9bc2f02",
+  "resolved_sha256": "bfb310d299c7eb7069f87912813024d3b83361bd5f60bd18cccda08ad9d852ec",
+  "recovered_rules_unchanged": true,
+  "command": "f 0 2",
+  "original": {
+    "action": "f",
+    "row": 0,
+    "column": 2,
+    "before": {
+      "rows": 2,
+      "columns": 3,
+      "mines": 1,
+      "flags": 1,
+      "generation": 1,
+      "visible": "#F1###",
+      "undo_index": 0,
+      "undo_enabled": false,
+      "grid_initialized": false
+    },
+    "result": 2,
+    "message": "Can only flag an unknown cell.",
+    "after": {
+      "rows": 2,
+      "columns": 3,
+      "mines": 1,
+      "flags": 1,
+      "generation": 1,
+      "visible": "#F1###",
+      "undo_index": 0,
+      "undo_enabled": false,
+      "grid_initialized": false
+    }
+  },
+  "synthetic": {
+    "action": "f",
+    "row": 0,
+    "column": 2,
+    "before": {
+      "rows": 2,
+      "columns": 3,
+      "mines": 1,
+      "flags": 1,
+      "generation": 1,
+      "visible": "#F####",
+      "undo_index": 0,
+      "undo_enabled": false,
+      "grid_initialized": false
+    },
+    "result": 0,
+    "message": "Make a move.",
+    "after": {
+      "rows": 2,
+      "columns": 3,
+      "mines": 1,
+      "flags": 2,
+      "generation": 1,
+      "visible": "#FF###",
+      "undo_index": 0,
+      "undo_enabled": false,
+      "grid_initialized": false
+    }
+  }
+}

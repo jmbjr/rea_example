@@ -1,0 +1,187 @@
+{
+  "case": "flag-already-flagged",
+  "native_fixture_sha256": "9a8f87e794c3558deef7934a0bf41b9f647889b564fbacac50ddb468fb3bf4c4",
+  "repetitions": 3,
+  "native_target": {
+    "binary": "/home/runner/work/rea_example/rea_example/evidence/actions/build/flag-oracle",
+    "sha256": "0dffd8e23302e47c47e89f6ef534ff77e055eef0d075927bc9e51078404914c0"
+  },
+  "runs": [
+    {
+      "observations": [
+        {
+          "action": "f",
+          "row": 0,
+          "column": 1,
+          "before": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          },
+          "result": 2,
+          "message": "Can only flag an unknown cell.",
+          "after": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          }
+        }
+      ],
+      "traces": [
+        [
+          {
+            "kind": "action",
+            "ref": "flag"
+          },
+          {
+            "kind": "predicate",
+            "ref": "flag-eligible",
+            "satisfied": false
+          },
+          {
+            "kind": "effect",
+            "ref": "flag-reject",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": {
+              "unset": true
+            },
+            "after": 2
+          }
+        ]
+      ]
+    },
+    {
+      "observations": [
+        {
+          "action": "f",
+          "row": 0,
+          "column": 1,
+          "before": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          },
+          "result": 2,
+          "message": "Can only flag an unknown cell.",
+          "after": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          }
+        }
+      ],
+      "traces": [
+        [
+          {
+            "kind": "action",
+            "ref": "flag"
+          },
+          {
+            "kind": "predicate",
+            "ref": "flag-eligible",
+            "satisfied": false
+          },
+          {
+            "kind": "effect",
+            "ref": "flag-reject",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": {
+              "unset": true
+            },
+            "after": 2
+          }
+        ]
+      ]
+    },
+    {
+      "observations": [
+        {
+          "action": "f",
+          "row": 0,
+          "column": 1,
+          "before": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          },
+          "result": 2,
+          "message": "Can only flag an unknown cell.",
+          "after": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          }
+        }
+      ],
+      "traces": [
+        [
+          {
+            "kind": "action",
+            "ref": "flag"
+          },
+          {
+            "kind": "predicate",
+            "ref": "flag-eligible",
+            "satisfied": false
+          },
+          {
+            "kind": "effect",
+            "ref": "flag-reject",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": {
+              "unset": true
+            },
+            "after": 2
+          }
+        ]
+      ]
+    }
+  ],
+  "cli": {
+    "returncode": 0,
+    "stdout": "{\"action\":\"f\",\"row\":0,\"column\":1,\"before\":{\"rows\":2,\"columns\":3,\"mines\":1,\"flags\":1,\"generation\":1,\"visible\":\"#F1###\",\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"result\":2,\"message\":\"Can only flag an unknown cell.\",\"after\":{\"rows\":2,\"columns\":3,\"mines\":1,\"flags\":1,\"generation\":1,\"visible\":\"#F1###\",\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n",
+    "stderr": ""
+  }
+}

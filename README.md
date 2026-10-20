@@ -4,7 +4,11 @@ An experiment in recovering a small application's behavior from a compiled binar
 
 ## Status
 
-Milestones 1–7 complete. Selected and pinned Minesweeper, built a CLI-only baseline, established fixed-clock fixtures, and completed a successful native REA/Ghidra analysis in GitHub Actions. See [hosted findings and evidence](evidence/step4-hosted/README.md), [operation guide](docs/GITHUB_ACTIONS.md), and [roadmap issue #1](https://github.com/jmbjr/rea_example/issues/1). Flag/unflag transitions are the bounded reconstruction scope; the DODGE model is validated/resolved, while the Python gameplay reconstruction remains pending. The pre-dig flag crash remains unfixed. The [native flag/unflag contract, fixtures, and dependency evidence](evidence/step5/README.md) are complete. DODGE draft 0.2.1 is pinned to `9af5804719bc4dc421d1cd76d3587f5b678d3f81`; see the [compatibility/authority audit](docs/DODGE_AUDIT.md) and [file identity manifest](spec/dodge-pin.json). The [assembled candidate and neutral model passed G1–G4](evidence/step7/README.md) in GitHub Actions, including 30 fatal negative cases and deterministic resolution. See the [pipeline guide](docs/DODGE_PIPELINE.md). Next is [issue #1 milestone 8](https://github.com/jmbjr/rea_example/issues/1): execute readable Python and compare with the native oracle. No gameplay executor exists yet.
+Milestones 1–8 complete. The bounded flag/unflag behavior now executes in readable Python through validated DODGE-derived semantics. [Hosted execution evidence](evidence/step8/README.md) records 33 native replay comparisons, 11 CLI comparisons, deterministic replay, a synthetic authority perturbation and 30 fatal validation cases. [Run the Python source](docs/PYTHON_FLAGS.md) or download the source/evidence artifact linked in the receipt.
+
+The scope remains direct flag/unflag calls on controlled visible states, with undo disabled. The upstream pre-dig CLI crash remains unfixed. This is source/debug-assisted reconstruction, not whole-game or blind-binary equivalence. No browser deployment or formal G6 export release is claimed.
+
+DODGE draft 0.2.1 is pinned to `9af5804719bc4dc421d1cd76d3587f5b678d3f81`; see the [authority audit](docs/DODGE_AUDIT.md), [validation pipeline](docs/DODGE_PIPELINE.md), [native contract](evidence/step5/README.md), and [REA findings](evidence/step4-hosted/README.md). The [roadmap](https://github.com/jmbjr/rea_example/issues/1) now stops for reassessment before selecting another mechanic or presentation milestone.
 
 ## Working decisions
 

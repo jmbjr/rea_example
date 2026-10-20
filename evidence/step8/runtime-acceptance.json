@@ -1,0 +1,58 @@
+{
+  "status": "pass",
+  "maturity": "G5",
+  "cli_projection": "shared neutral/runtime semantics; no export-release claim",
+  "candidate_sha256": "2f499d041594a0556e01b12edc5927fa2fee3d610474d9fc0b35b0441571455f",
+  "resolved_sha256": "28429061762636e06202bd82d9c3b51d2625a9919b82b06b747645e068142468",
+  "cases": [
+    {
+      "case": "flag-already-flagged",
+      "actions": 1,
+      "repetitions": 3,
+      "status": "pass",
+      "cli": "pass"
+    },
+    {
+      "case": "flag-revealed",
+      "actions": 1,
+      "repetitions": 3,
+      "status": "pass",
+      "cli": "pass"
+    },
+    {
+      "case": "flag-success",
+      "actions": 1,
+      "repetitions": 3,
+      "status": "pass",
+      "cli": "pass"
+    },
+    {
+      "case": "repeated-sequence",
+      "actions": 6,
+      "repetitions": 3,
+      "status": "pass",
+      "cli": "pass"
+    },
+    {
+      "case": "unflag-success",
+      "actions": 1,
+      "repetitions": 3,
+      "status": "pass",
+      "cli": "pass"
+    },
+    {
+      "case": "unflag-unflagged",
+      "actions": 1,
+      "repetitions": 3,
+      "status": "pass",
+      "cli": "pass"
+    }
+  ],
+  "native_action_comparisons": 33,
+  "cli_action_comparisons": 11,
+  "deterministic_replay": true,
+  "authority_perturbation": "pass; coherent synthetic source, validated/resolved again",
+  "invalid_input_no_mutation": "pass",
+  "invalid_rule_gated_before_runtime": "pass",
+  "executor_sha256": "32fae8a7291680ad7b4f4253ecf33423fb3f162718e9a5e7f83842c1521594b3"
+}

@@ -1,0 +1,241 @@
+{
+  "case": "unflag-success",
+  "native_fixture_sha256": "52178f3fc9d8134f8e40549622b891c58abe5f8bb52967e5d6aa473a2c97d092",
+  "repetitions": 3,
+  "native_target": {
+    "binary": "/home/runner/work/rea_example/rea_example/evidence/actions/build/flag-oracle",
+    "sha256": "0dffd8e23302e47c47e89f6ef534ff77e055eef0d075927bc9e51078404914c0"
+  },
+  "runs": [
+    {
+      "observations": [
+        {
+          "action": "u",
+          "row": 0,
+          "column": 1,
+          "before": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          },
+          "result": 0,
+          "message": "Make a move.",
+          "after": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 0,
+            "generation": 1,
+            "visible": "##1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          }
+        }
+      ],
+      "traces": [
+        [
+          {
+            "kind": "action",
+            "ref": "unflag"
+          },
+          {
+            "kind": "predicate",
+            "ref": "unflag-eligible",
+            "satisfied": true
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-cell",
+            "subject": {
+              "relative": "target"
+            },
+            "before": "F",
+            "after": "#"
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-count",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": 1,
+            "after": 0
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-ok",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": {
+              "unset": true
+            },
+            "after": 0
+          }
+        ]
+      ]
+    },
+    {
+      "observations": [
+        {
+          "action": "u",
+          "row": 0,
+          "column": 1,
+          "before": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          },
+          "result": 0,
+          "message": "Make a move.",
+          "after": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 0,
+            "generation": 1,
+            "visible": "##1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          }
+        }
+      ],
+      "traces": [
+        [
+          {
+            "kind": "action",
+            "ref": "unflag"
+          },
+          {
+            "kind": "predicate",
+            "ref": "unflag-eligible",
+            "satisfied": true
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-cell",
+            "subject": {
+              "relative": "target"
+            },
+            "before": "F",
+            "after": "#"
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-count",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": 1,
+            "after": 0
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-ok",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": {
+              "unset": true
+            },
+            "after": 0
+          }
+        ]
+      ]
+    },
+    {
+      "observations": [
+        {
+          "action": "u",
+          "row": 0,
+          "column": 1,
+          "before": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 1,
+            "generation": 1,
+            "visible": "#F1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          },
+          "result": 0,
+          "message": "Make a move.",
+          "after": {
+            "rows": 2,
+            "columns": 3,
+            "mines": 1,
+            "flags": 0,
+            "generation": 1,
+            "visible": "##1###",
+            "undo_index": 0,
+            "undo_enabled": false,
+            "grid_initialized": false
+          }
+        }
+      ],
+      "traces": [
+        [
+          {
+            "kind": "action",
+            "ref": "unflag"
+          },
+          {
+            "kind": "predicate",
+            "ref": "unflag-eligible",
+            "satisfied": true
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-cell",
+            "subject": {
+              "relative": "target"
+            },
+            "before": "F",
+            "after": "#"
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-count",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": 1,
+            "after": 0
+          },
+          {
+            "kind": "effect",
+            "ref": "unflag-ok",
+            "subject": {
+              "relative": "scenario"
+            },
+            "before": {
+              "unset": true
+            },
+            "after": 0
+          }
+        ]
+      ]
+    }
+  ],
+  "cli": {
+    "returncode": 0,
+    "stdout": "{\"action\":\"u\",\"row\":0,\"column\":1,\"before\":{\"rows\":2,\"columns\":3,\"mines\":1,\"flags\":1,\"generation\":1,\"visible\":\"#F1###\",\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false},\"result\":0,\"message\":\"Make a move.\",\"after\":{\"rows\":2,\"columns\":3,\"mines\":1,\"flags\":0,\"generation\":1,\"visible\":\"##1###\",\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":false}}\n",
+    "stderr": ""
+  }
+}
