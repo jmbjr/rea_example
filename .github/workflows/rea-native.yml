@@ -10,6 +10,8 @@ on:
       - 'target/cli-only-stubs.c'
       - 'target/fixed-time.c'
       - 'target/flag-oracle.c'
+      - 'target/playable-oracle.c'
+      - 'tools/capture_playable_oracle.py'
       - 'tools/capture_flag_oracle.py'
       - 'tools/verify_step3.py'
       - 'evidence/step3/**'
@@ -82,10 +84,17 @@ jobs:
           gcc -std=c99 -g -Wall -Wextra -I"$RUNNER_TEMP/minesweeper-upstream/src" "$RUNNER_TEMP/minesweeper-upstream/src/minesweeper.c" target/flag-oracle.c -o evidence/actions/build/flag-oracle
           sha256sum evidence/actions/build/flag-oracle | tee evidence/actions/oracle-sha256.txt
           python3 tools/capture_flag_oracle.py evidence/actions/build/flag-oracle evidence/actions/oracle
-      - name: Analyze with REA and inspect bounded flag behavior
+      - name: Capture fixed-layout playable native contract
         shell: bash
         run: |
-          python3 tools/capture_rea.py "$RUNNER_TEMP/rea-runtime/node_modules/rea-agents/scripts/rea.mjs" evidence/actions/build/minesweeper-cli evidence/actions/rea
+          set -euo pipefail
+          gcc -std=c99 -g -Wall -Wextra -I"$RUNNER_TEMP/minesweeper-upstream/src" "$RUNNER_TEMP/minesweeper-upstream/src/minesweeper.c" target/playable-oracle.c -o evidence/actions/build/playable-oracle
+          sha256sum evidence/actions/build/playable-oracle | tee evidence/actions/playable-oracle-sha256.txt
+          python3 tools/capture_playable_oracle.py evidence/actions/build/playable-oracle evidence/actions/playable
+      - name: Analyze with REA and inspect playable dependencies
+        shell: bash
+        run: |
+          python3 tools/capture_rea.py "$RUNNER_TEMP/rea-runtime/node_modules/rea-agents/scripts/rea.mjs" evidence/actions/build/minesweeper-cli evidence/actions/rea --playable
       - name: Upload complete evidence even on failure
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

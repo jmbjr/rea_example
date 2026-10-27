@@ -11,6 +11,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('cli', type=Path)
 parser.add_argument('binary', type=Path)
 parser.add_argument('output', type=Path)
+parser.add_argument('--playable', action='store_true', help='Also inspect direct dig/win dependencies')
 args = parser.parse_args()
 args.output.mkdir(parents=True, exist_ok=True)
 binary = args.binary.resolve()
@@ -26,6 +27,10 @@ operations = [
       for name in ['msw_get_visible', 'msw_set_visible', 'msw_set_visible_noundo',
                    'msw_index', 'msw_init', 'run_game']],
 ]
+if args.playable:
+    operations += [(name, ['decompile', str(binary), name, '--provider', 'ghidra', '--json'])
+                   for name in ['msw_dig', 'msw_won', 'msw_in_bounds', 'msw_get_grid',
+                                'msw_initial_grid', 'msw_generate_grid']]
 records = []
 for name, command_args in operations:
     command = ['node', str(args.cli.resolve()), *command_args]
