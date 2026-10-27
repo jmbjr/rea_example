@@ -1,0 +1,190 @@
+{
+  "status": "pass",
+  "maturity": "G4",
+  "deterministic_resolution": true,
+  "candidate_sha256": "2f499d041594a0556e01b12edc5927fa2fee3d610474d9fc0b35b0441571455f",
+  "resolved_sha256": "28429061762636e06202bd82d9c3b51d2625a9919b82b06b747645e068142468",
+  "negatives": [
+    {
+      "case": "schema-invalid-quantity",
+      "expected_stage": "G1-schema",
+      "status": "pass",
+      "rejection": "0 is less than the minimum of 1\n\nFailed validating 'minimum' in schema['properties']['scenes']['additionalProperties']['properties']['instances']['items']['properties']['quantity']:\n    {'type': 'integer', 'minimum': 1, 'default': 1}\n\nOn instance['scenes']['flag-already-flagged-scene']['instances'][0]['quantity']:\n    0"
+    },
+    {
+      "case": "missing-effect",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "step reference wrong kind or missing"
+    },
+    {
+      "case": "wrong-reference-kind",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "action procedure wrong kind or missing"
+    },
+    {
+      "case": "procedure-cycle",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "procedure/action reference cycle"
+    },
+    {
+      "case": "duplicate-instance",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "duplicate scene instance ID"
+    },
+    {
+      "case": "source-hash",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "source hash mismatch: evidence/step5/rea/msw_flag.json"
+    },
+    {
+      "case": "typed-default",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "state type/enum mismatch"
+    },
+    {
+      "case": "duplicate-coordinate",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "fixture projection/binding order differs from source"
+    },
+    {
+      "case": "incoherent-counter",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "fixture projection/binding order differs from source"
+    },
+    {
+      "case": "undo-enabled",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "fixture projection/binding order differs from source"
+    },
+    {
+      "case": "missing-target-context",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "missing/unsupported target context"
+    },
+    {
+      "case": "missing-else",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "missing fields: ['else_steps']"
+    },
+    {
+      "case": "missing-result",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "success/rejection sequence incomplete"
+    },
+    {
+      "case": "changed-delta",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "effect/order differs from recovered contract"
+    },
+    {
+      "case": "invented-mine-cap",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "invented flag cap"
+    },
+    {
+      "case": "missing-profile",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "selected slice requires one application profile"
+    },
+    {
+      "case": "profile-version",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "missing/unsupported/version-mismatched required profile"
+    },
+    {
+      "case": "validator-missing",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "missing source: tools/does-not-exist.py"
+    },
+    {
+      "case": "validator-kind",
+      "expected_stage": "G3-required-source-profile",
+      "status": "pass",
+      "rejection": "validator kind/version mismatch"
+    },
+    {
+      "case": "unsupported-topology",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "unsupported fields: ['topologies']"
+    },
+    {
+      "case": "wrong-cell-type",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "state type/enum mismatch"
+    },
+    {
+      "case": "lost-binding",
+      "expected_stage": "G2-core",
+      "status": "pass",
+      "rejection": "required binding missing: grid-initialized"
+    },
+    {
+      "case": "resolved-counter",
+      "expected_stage": "G4-generic-resolved",
+      "status": "pass",
+      "rejection": "resolved scenario bindings changed"
+    },
+    {
+      "case": "resolved-counter-type",
+      "expected_stage": "G4-generic-resolved",
+      "status": "pass",
+      "rejection": "resolved scenario bindings changed"
+    },
+    {
+      "case": "resolved-integer-type",
+      "expected_stage": "G4-generic-resolved",
+      "status": "pass",
+      "rejection": "resolved scenario bindings changed"
+    },
+    {
+      "case": "resolved-cell-dropped",
+      "expected_stage": "G4-generic-resolved",
+      "status": "pass",
+      "rejection": "resolved inventory incomplete"
+    },
+    {
+      "case": "resolved-invocation",
+      "expected_stage": "G4-generic-resolved",
+      "status": "pass",
+      "rejection": "resolved cell state/invocation/provenance changed"
+    },
+    {
+      "case": "resolved-effect-order",
+      "expected_stage": "G4-generic-resolved",
+      "status": "pass",
+      "rejection": "dropped/invented rule or source semantics"
+    },
+    {
+      "case": "resolved-scope-order",
+      "expected_stage": "G4-generic-resolved",
+      "status": "pass",
+      "rejection": "resolved scope order/content changed"
+    },
+    {
+      "case": "required-resolved-validator",
+      "expected_stage": "G4-required-resolved-profile",
+      "status": "pass",
+      "rejection": "injected resolved validator failure"
+    }
+  ],
+  "runtime_execution": "not implemented; milestone 8"
+}

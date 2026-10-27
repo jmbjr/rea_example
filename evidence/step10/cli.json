@@ -1,0 +1,59 @@
+[
+  {
+    "rows": 4,
+    "columns": 4,
+    "mines": 2,
+    "flags": 0,
+    "visible": "################",
+    "outcome": null
+  },
+  {
+    "result": 7,
+    "outcome": "loss",
+    "board": {
+      "rows": 4,
+      "columns": 4,
+      "mines": 2,
+      "flags": 0,
+      "visible": "!###############",
+      "outcome": "loss"
+    }
+  },
+  {
+    "error": "session is terminal; restart to play again"
+  },
+  {
+    "board": {
+      "rows": 4,
+      "columns": 4,
+      "mines": 2,
+      "flags": 0,
+      "visible": "################",
+      "outcome": null
+    }
+  },
+  {
+    "result": 0,
+    "outcome": null,
+    "board": {
+      "rows": 4,
+      "columns": 4,
+      "mines": 2,
+      "flags": 1,
+      "visible": "F###############",
+      "outcome": null
+    }
+  },
+  {
+    "result": 0,
+    "outcome": null,
+    "board": {
+      "rows": 4,
+      "columns": 4,
+      "mines": 2,
+      "flags": 0,
+      "visible": "################",
+      "outcome": null
+    }
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "case": "changed-neighbor-order",
+    "stage": "G3-required-source-profile",
+    "error": "playable graph/bindings/end semantics differ from canonical specialization",
+    "status": "fail"
+  },
+  {
+    "case": "condition-cycle",
+    "stage": "G2-core",
+    "error": "condition reference cycle",
+    "status": "fail"
+  },
+  {
+    "case": "missing-binding",
+    "stage": "G2-core",
+    "error": "required binding missing: cell-row",
+    "status": "fail"
+  },
+  {
+    "case": "missing-terminal",
+    "stage": "G3-required-source-profile",
+    "error": "playable graph/bindings/end semantics differ from canonical specialization",
+    "status": "fail"
+  },
+  {
+    "case": "omitted-neighbor",
+    "stage": "G3-required-source-profile",
+    "error": "playable graph/bindings/end semantics differ from canonical specialization",
+    "status": "fail"
+  },
+  {
+    "case": "procedure-cycle",
+    "stage": "G2-core",
+    "error": "procedure/action reference cycle",
+    "status": "fail"
+  },
+  {
+    "case": "resolved-terminal-tamper",
+    "stage": "G4-generic-resolved",
+    "error": "resolved terminal semantics changed",
+    "status": "fail"
+  },
+  {
+    "case": "reuse",
+    "stage": "G2-core",
+    "error": "required binding missing: cell-row",
+    "status": "fail"
+  },
+  {
+    "case": "static-missing",
+    "stage": "G2-core",
+    "error": "static subject missing from scope",
+    "status": "fail"
+  },
+  {
+    "case": "unsupported-field",
+    "stage": "G2-core",
+    "error": "unsupported fields: ['extensions']",
+    "status": "fail"
+  },
+  {
+    "case": "weak-win",
+    "stage": "G3-required-source-profile",
+    "error": "playable graph/bindings/end semantics differ from canonical specialization",
+    "status": "fail"
+  },
+  {
+    "case": "wrong-root-result",
+    "stage": "G3-required-source-profile",
+    "error": "playable graph/bindings/end semantics differ from canonical specialization",
+    "status": "fail"
+  },
+  {
+    "case": "wrong-terminal-order",
+    "stage": "G3-required-source-profile",
+    "error": "playable graph/bindings/end semantics differ from canonical specialization",
+    "status": "fail"
+  }
+]

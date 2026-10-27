@@ -1,0 +1,29 @@
+{
+  "synthetic": true,
+  "original": {
+    "result": 7,
+    "outcome": "loss",
+    "board": {
+      "rows": 4,
+      "columns": 4,
+      "mines": 2,
+      "flags": 0,
+      "visible": "!###############",
+      "outcome": "loss"
+    }
+  },
+  "variant": {
+    "result": 0,
+    "outcome": null,
+    "board": {
+      "rows": 4,
+      "columns": 4,
+      "mines": 2,
+      "flags": 0,
+      "visible": "1###############",
+      "outcome": null
+    }
+  },
+  "validated_resolved_sha256": "7ebfe75888ea1bcc34df307c4b03e96c6ee9e51153c24abe58ef914191e222a9",
+  "executor_sha256": "7dc19fe8d0f3d65030763f00b2ad15591b0a6f6a2b3bcadcb7a1019d6e126cfc"
+}
