@@ -1,5 +1,10 @@
 # REA → DODGE → Python
 
+## Playable Python assessment build
+
+Milestone 10 adds digging, empty-area expansion, flag/unflag, win/loss and restart on three fixed 4x4 boards. [Download/run instructions and authority boundaries](docs/PLAYABLE_PYTHON.md). The **Playable Python acceptance** Actions artifact contains `minesweeper-python.zip`; Python 3.10+ is sufficient to play. Browser/Pages delivery remains the next milestones.
+
+
 An experiment in recovering a small application's behavior from a compiled binary, representing the recovered game semantics in DODGE, and building an understandable Python implementation.
 
 ## Status

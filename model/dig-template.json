@@ -1,0 +1,17 @@
+{
+  "version": "1",
+  "source_refs": ["rea-dig", "rea-win", "rea-caller-playable"],
+  "neighbor_offsets": [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]],
+  "hidden": "#",
+  "flag": "F",
+  "zero": "0",
+  "mine": "!",
+  "results": {"ok": 0, "bounds": 1, "flagged": 5, "mine": 7},
+  "procedure": {
+    "steps": [{"kind":"branch", "branches":[
+      {"condition":"expand", "steps":[{"kind":"effect","ref":"reveal"},{"kind":"procedure","ref":"neighbors"},{"kind":"effect","ref":"ok"}]},
+      {"condition":"flagged", "steps":[{"kind":"effect","ref":"flagged-result"}]},
+      {"condition":"is-mine", "steps":[{"kind":"effect","ref":"reveal"},{"kind":"effect","ref":"mine-result"}]}
+    ], "else_steps":[{"kind":"effect","ref":"reveal"},{"kind":"effect","ref":"ok"}]}]
+  }
+}

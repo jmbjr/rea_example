@@ -36,7 +36,7 @@ def validate_core(d, root):
             if owner:
                 require(s['relative'] == ('target' if owner == 'object' else 'scenario'), 'subject ownership mismatch')
         else:
-            require(owner is None, 'static rule subjects unsupported in this subset')
+            require(owner in (None, 'object'), 'static subject ownership mismatch')
             keys(s, ['instance_ref'], ['instance_ref'])
             require(owner in (None, 'object'), 'scenario binding cannot own an instance')
 
@@ -51,16 +51,39 @@ def validate_core(d, root):
         if 'default' in definition:
             matches(definition, definition['default'])
         trace(definition)
-    for condition in rules['conditions'].values():
-        keys(condition, ['op', 'left', 'right', 'source_ref'], ['op', 'left', 'right'])
-        require(condition['op'] == 'eq', 'unsupported predicate')
-        operand = condition['left']
-        keys(operand, ['ref', 'subject'], ['ref', 'subject'])
-        require(operand['ref'] in values, 'operand reference wrong kind or missing')
-        definition = values[operand['ref']]
-        subject(operand['subject'], definition['owner_scope'])
-        matches(definition, condition['right'])
+    condition_graph = {}
+    for ref, condition in rules['conditions'].items():
         trace(condition)
+        if condition['op'] in ('all', 'any', 'not'):
+            keys(condition, ['op', 'conditions', 'source_ref'], ['op', 'conditions'])
+            children = condition['conditions']
+            require(bool(children) and all(type(x) is str and x in rules['conditions'] for x in children), 'invalid composite predicate')
+            require(condition['op'] != 'not' or len(children) == 1, 'not requires one condition')
+            condition_graph[ref] = children
+        else:
+            keys(condition, ['op', 'left', 'right', 'source_ref'], ['op', 'left', 'right'])
+            require(condition['op'] == 'eq', 'unsupported predicate')
+            operand = condition['left']
+            keys(operand, ['ref', 'subject'], ['ref', 'subject'])
+            require(operand['ref'] in values, 'operand reference wrong kind or missing')
+            definition = values[operand['ref']]
+            subject(operand['subject'], definition['owner_scope'])
+            matches(definition, condition['right'])
+            condition_graph[ref] = []
+    def acyclic(graph, label):
+        active, visited = set(), set()
+        def visit(node):
+            require(node not in active, label + ' reference cycle')
+            if node in visited:
+                return
+            active.add(node)
+            for child in graph[node]:
+                visit(child)
+            active.remove(node)
+            visited.add(node)
+        for node in graph:
+            visit(node)
+    acyclic(condition_graph, 'condition')
     for effect in rules['effects'].values():
         keys(effect, ['op', 'target_ref', 'subject', 'value', 'source_ref'], ['op', 'target_ref', 'subject', 'value'])
         require(effect['op'] in ['set', 'add', 'subtract'], 'unsupported effect')
@@ -76,7 +99,7 @@ def validate_core(d, root):
     graph = {ref: [] for section in ['actions', 'procedures'] for ref in rules[section]}
 
     def steps(items, parent, allowed=('effect', 'procedure', 'action', 'branch')):
-        require(bool(items), 'empty executable sequence')
+        require(type(items) is list, 'executable sequence must be a list')
         for step in items:
             kind = step['kind']
             require(kind in allowed, 'unsupported step')
@@ -142,13 +165,24 @@ def validate_core(d, root):
             require(type(inst['quantity']) is int and inst['quantity'] >= 1, 'invalid quantity')
     require(bool(d['scenarios']), 'no selected scenarios')
     for scenario in d['scenarios'].values():
-        keys(scenario, ['name', 'scene_ref', 'source_ref', 'action_refs', 'initial_state', 'authority', 'assumptions'], ['initial_state', 'action_refs'])
+        keys(scenario, ['name', 'scene_ref', 'source_ref', 'action_refs', 'initial_state', 'authority', 'assumptions', 'end_conditions'], ['initial_state', 'action_refs'])
         trace(scenario)
         require(scenario['scene_ref'] in d['scenes'], 'missing selected scene')
         scene = d['scenes'][scenario['scene_ref']]
         ids = {x['id'] for x in scene['instances']}
         unique(scenario['action_refs'], 'available action')
         require(set(scenario['action_refs']) <= set(rules['actions']), 'missing available action')
+        ends = scenario.get('end_conditions', [])
+        unique([x['id'] for x in ends], 'end condition ID')
+        for end in ends:
+            keys(end, ['id', 'outcome', 'condition'], ['id', 'outcome', 'condition'])
+            require(end['condition'] in rules['conditions'], 'missing terminal predicate')
+            require(end['outcome'] in ('win', 'loss'), 'unsupported terminal outcome')
+        for collection in ('conditions', 'effects'):
+            for item in rules[collection].values():
+                owner = item.get('subject', item.get('left', {}).get('subject', {}))
+                if 'instance_ref' in owner:
+                    require(owner['instance_ref'] in ids, 'static subject missing from scope')
         seen = []
         for binding in scenario['initial_state']:
             keys(binding, ['ref', 'subject', 'value'], ['subject'])
@@ -166,7 +200,7 @@ def validate_core(d, root):
             for inv in d['objects'][inst['object_ref']]['invocations']:
                 require(all(x['ref'] in scenario['action_refs'] for x in inv['steps']), 'invoked action unavailable')
         # Prove every required lookup/mutation has one concrete binding per possible cell target.
-        read_refs = {x['left']['ref'] for x in rules['conditions'].values()}
+        read_refs = {x['left']['ref'] for x in rules['conditions'].values() if 'left' in x}
         read_refs |= {x['target_ref'] for x in rules['effects'].values() if x['op'] != 'set'}
         output_refs = {x['target_ref'] for x in rules['effects'].values() if x['op'] == 'set'} - read_refs
         for ref, definition in values.items():
@@ -183,7 +217,7 @@ def validate_core(d, root):
         '5_source_hashes': 'pass', '6_scoped_identity': 'pass',
         '7_topology_edges': 'not-applicable; topology input rejected',
         '8_reference_kinds': 'pass', '9_types_defaults_bounds': 'pass',
-        '10_order_end_conditions': 'pass; ordered branches/effects; phases/end loops rejected',
+        '10_order_end_conditions': 'pass; ordered branches/effects; declared end-condition order; priority/effects/phases rejected',
         '11_ai': 'not-applicable; AI input rejected',
         '12_target_contract': 'not-applicable; no exporter invoked',
         'invocations': 'pass; direct token inheritance, unique IDs/slots, explicit target and availability',

@@ -1,0 +1,12 @@
+{
+  "version": "1",
+  "boards": [
+    {"id": "corners", "name": "Corners — expansion", "mines": [0, 15]},
+    {"id": "crossroads", "name": "Crossroads — careful numbers", "mines": [1, 6, 8, 15]},
+    {"id": "pockets", "name": "Pockets — separated openings", "mines": [2, 3, 10]}
+  ],
+  "rows": 4,
+  "columns": 4,
+  "initial_visible": "################",
+  "assumptions": ["Fixed concealed layouts; restart repeats the selected board.", "First click is not protected. Undo, chording and random generation are excluded."]
+}
