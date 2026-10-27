@@ -8,7 +8,7 @@ Milestones 1–8 complete. The bounded flag/unflag behavior now executes in read
 
 The scope remains direct flag/unflag calls on controlled visible states, with undo disabled. The upstream pre-dig CLI crash remains unfixed. This is source/debug-assisted reconstruction, not whole-game or blind-binary equivalence. No browser deployment or formal G6 export release is claimed.
 
-DODGE draft 0.2.1 is pinned to `9af5804719bc4dc421d1cd76d3587f5b678d3f81`; see the [authority audit](docs/DODGE_AUDIT.md), [validation pipeline](docs/DODGE_PIPELINE.md), [native contract](evidence/step5/README.md), and [REA findings](evidence/step4-hosted/README.md). The [roadmap](https://github.com/jmbjr/rea_example/issues/1) now stops for reassessment before selecting another mechanic or presentation milestone.
+DODGE draft 0.2.1 is pinned to `9af5804719bc4dc421d1cd76d3587f5b678d3f81`; see the [authority audit](docs/DODGE_AUDIT.md), [validation pipeline](docs/DODGE_PIPELINE.md), [native contract](evidence/step5/README.md), and [REA findings](evidence/step4-hosted/README.md). Milestone 9 has now established the [native playable contract and evidence](evidence/step9/README.md). The [next bounded implementation](docs/PLAYABLE_CONTRACT.md) adds dig, expansion and terminal sessions, followed by browser delivery for user assessment. These new mechanics are not yet implemented; the existing G5 claim remains flag/unflag only.
 
 ## Working decisions
 

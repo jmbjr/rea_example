@@ -1,0 +1,9 @@
+{
+  "upstream_commit": "c7cadf1f7ed57d950b400d965a7d3bbab5e50bed",
+  "source_exposure": "Source and debug symbols used for investigation, fixture setup and interpretation; not blind recovery",
+  "files": {
+    "src/minesweeper.c": "eb61481f3c0216f75d78ccd6ee453d3e40ef1d740179c5342d947d1f52021eb3",
+    "src/minesweeper.h": "1dc571cbeebe821b4215af7f9a3d9a5dba80c903b3ab6880d72af944d723feae",
+    "src/cli.c": "d7eef7932e494411df8b5edb62a3bc7fd48506f29254b3725d321398fe6105de"
+  }
+}

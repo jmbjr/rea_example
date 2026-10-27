@@ -1,0 +1,28 @@
+{
+  "case": "mine-and-raw-post-loss",
+  "setup_kind": "synthetic-fixed-initialized-layout",
+  "grid": "!10011000011001!",
+  "visible": "################",
+  "stdin": "d 0 0\nd 0 1\n",
+  "target": {
+    "sha256": "29bafb6daf9160935d5cf33546c450aefe8d0b8164a3ef97fcae3eb764e41d75"
+  },
+  "repetitions": 3,
+  "runs": [
+    {
+      "returncode": 0,
+      "stdout": "{\"setup\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"################\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0}}\n{\"action\":\"d\",\"row\":0,\"column\":0,\"before\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"################\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"result\":7,\"message\":\"BOOM!\",\"after\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!###############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"cli_would_stop\":true}\n{\"action\":\"d\",\"row\":0,\"column\":1,\"before\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!###############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"result\":0,\"message\":\"Make a move.\",\"after\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!1##############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"cli_would_stop\":false}\n",
+      "stderr": ""
+    },
+    {
+      "returncode": 0,
+      "stdout": "{\"setup\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"################\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0}}\n{\"action\":\"d\",\"row\":0,\"column\":0,\"before\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"################\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"result\":7,\"message\":\"BOOM!\",\"after\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!###############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"cli_would_stop\":true}\n{\"action\":\"d\",\"row\":0,\"column\":1,\"before\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!###############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"result\":0,\"message\":\"Make a move.\",\"after\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!1##############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"cli_would_stop\":false}\n",
+      "stderr": ""
+    },
+    {
+      "returncode": 0,
+      "stdout": "{\"setup\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"################\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0}}\n{\"action\":\"d\",\"row\":0,\"column\":0,\"before\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"################\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"result\":7,\"message\":\"BOOM!\",\"after\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!###############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"cli_would_stop\":true}\n{\"action\":\"d\",\"row\":0,\"column\":1,\"before\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!###############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"result\":0,\"message\":\"Make a move.\",\"after\":{\"rows\":4,\"columns\":4,\"mines\":2,\"grid\":\"!10011000011001!\",\"visible\":\"!1##############\",\"flags\":0,\"generation\":1,\"undo_index\":0,\"undo_enabled\":false,\"grid_initialized\":true,\"won\":0},\"cli_would_stop\":false}\n",
+      "stderr": ""
+    }
+  ]
+}

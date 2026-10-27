@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "cases": 13,
+  "repetitions": 3,
+  "action_observations": 210,
+  "target": {
+    "sha256": "29bafb6daf9160935d5cf33546c450aefe8d0b8164a3ef97fcae3eb764e41d75"
+  },
+  "upstream_commit": "c7cadf1f7ed57d950b400d965a7d3bbab5e50bed",
+  "scope": "native direct calls; initialized fixed 4x4 layout; undo disabled; raw post-terminal probes"
+}

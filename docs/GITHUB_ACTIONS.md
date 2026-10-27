@@ -23,3 +23,7 @@ No Windows laptop setup is required for this hosted route.
 ## Native oracle scope
 
 The oracle covers direct flag/unflag calls on synthetic 2x3 visible states with valid coordinates, coherent counters and undo disabled. It records initialization, before/after state, upstream result and message. Probe guards and setup are experiment choices. See [the contract and reviewed evidence](../evidence/step5/README.md). It does not run CLI win checking or repair the upstream pre-dig flag crash. tools/capture_flag_oracle.py records complete JSON fixtures under the uploaded oracle/ directory; tools/capture_rea.py records complete native analysis output under rea/.
+
+## Playable contract capture (milestone 9)
+
+The workflow now also builds `target/playable-oracle.c`, captures 13 initialized fixed-layout native cases three times (210 action observations), and runs REA with `--playable` to inspect dig, win, bounds, grid access and generation dependencies. See [reviewed evidence](../evidence/step9/README.md) and [scope/compatibility audit](PLAYABLE_CONTRACT.md). The raw probe continues after terminal observations to distinguish core behavior from the CLI session boundary. This capture does not implement Python digging or deploy Pages.
