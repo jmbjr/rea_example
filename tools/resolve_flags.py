@@ -10,6 +10,8 @@ def resolve(d):
     for scenario_id, scenario in d['scenarios'].items():
         scope = dict(id=scenario_id, scene_ref=scenario['scene_ref'], source_ref=scenario['source_ref'],
                      action_refs=deepcopy(scenario['action_refs']), values={}, inventory=[])
+        if 'end_conditions' in scenario:
+            scope['end_conditions'] = deepcopy(scenario['end_conditions'])
         for binding in scenario['initial_state']:
             if binding['subject'] == {'relative': 'scenario'}:
                 scope['values'][binding['ref']] = deepcopy(binding['value'])
@@ -35,9 +37,10 @@ def validate_resolved_core(d, r):
     require([s['id'] for s in r['scenarios']] == list(d['scenarios']), 'resolved scope order/content changed')
     for scope in r['scenarios']:
         scenario = d['scenarios'][scope['id']]
-        keys(scope, ['id', 'scene_ref', 'source_ref', 'action_refs', 'values', 'inventory'])
+        keys(scope, ['id', 'scene_ref', 'source_ref', 'action_refs', 'values', 'inventory', 'end_conditions'])
         require(scope['scene_ref'] == scenario['scene_ref'] and scope['source_ref'] == scenario['source_ref'], 'resolved scope provenance changed')
         require(scope['action_refs'] == scenario['action_refs'], 'resolved action availability changed')
+        require(digest(scope.get('end_conditions')) == digest(scenario.get('end_conditions')), 'resolved terminal semantics changed')
         source_values = {b['ref']: b['value'] for b in scenario['initial_state'] if b['subject'] == {'relative': 'scenario'}}
         require(digest(scope['values']) == digest(source_values), 'resolved scenario bindings changed')
         instances = d['scenes'][scenario['scene_ref']]['instances']

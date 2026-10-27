@@ -1,0 +1,70 @@
+name: Playable Python acceptance
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/playable.yml'
+      - 'model/**'
+      - 'python/**'
+      - 'tools/**'
+      - 'target/playable-oracle.c'
+      - 'spec/**'
+      - 'requirements-dodge.txt'
+      - 'evidence/step9/**'
+permissions:
+  contents: read
+jobs:
+  accept:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Acquire pinned specifications and unchanged native target
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone https://github.com/jmbjr/DODGE.git "$RUNNER_TEMP/dodge-spec"
+          git -C "$RUNNER_TEMP/dodge-spec" checkout --detach 9af5804719bc4dc421d1cd76d3587f5b678d3f81
+          git clone https://github.com/brenns10/minesweeper.git "$RUNNER_TEMP/minesweeper"
+          git -C "$RUNNER_TEMP/minesweeper" checkout --detach c7cadf1f7ed57d950b400d965a7d3bbab5e50bed
+          mkdir -p build/playable
+          python3 -m venv "$RUNNER_TEMP/playable-venv"
+          "$RUNNER_TEMP/playable-venv/bin/python" -m pip install -r requirements-dodge.txt
+          cc -std=c99 -O0 -g -I "$RUNNER_TEMP/minesweeper/src" target/playable-oracle.c "$RUNNER_TEMP/minesweeper/src/minesweeper.c" -o build/playable/native-oracle
+          cc --version > build/playable/compiler.txt
+          "$RUNNER_TEMP/playable-venv/bin/python" --version > build/playable/python.txt
+          "$RUNNER_TEMP/playable-venv/bin/python" -m pip freeze > build/playable/dependencies.txt
+      - name: Preserve original flag gates and runtime regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/playable-venv/bin/python" tools/check_flag_gates.py "$RUNNER_TEMP/dodge-spec" build/playable/flag-gates > build/playable/flag-gates.log
+          "$RUNNER_TEMP/playable-venv/bin/python" tools/check_flag_runtime.py "$RUNNER_TEMP/dodge-spec" build/playable/flag-runtime > build/playable/flag-runtime.log
+      - name: Validate, compare native traces and test session boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/playable-venv/bin/python" tools/check_playable.py "$RUNNER_TEMP/dodge-spec" build/playable/native-oracle build/playable/acceptance | tee build/playable/checks.log
+          "$RUNNER_TEMP/playable-venv/bin/python" tools/package_playable.py build/playable/acceptance/bundle build/playable/minesweeper-python.zip
+          python3 - <<'PY'
+          import json, subprocess, sys, tempfile, zipfile
+          from pathlib import Path
+          with tempfile.TemporaryDirectory() as tmp:
+              with zipfile.ZipFile('build/playable/minesweeper-python.zip') as z:
+                  z.extractall(tmp)
+              run = subprocess.run([sys.executable, 'python/play.py', 'bundle', '--board', 'corners', '--json'], cwd=tmp, input='d 0 0\nreset\nquit\n', text=True, capture_output=True, check=True)
+              lines = [json.loads(x) for x in run.stdout.splitlines()]
+              assert lines[1]['outcome'] == 'loss' and lines[2]['board']['outcome'] is None
+          PY
+      - name: Retain native, validation, session and source evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: playable-python-evidence
+          path: build/playable/
+          retention-days: 30
+          if-no-files-found: warn

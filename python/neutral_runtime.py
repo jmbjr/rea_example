@@ -26,7 +26,14 @@ class Runtime:
 
     def _condition(self, ref, context):
         condition = self.rules['conditions'][ref]
-        require(condition['op'] == 'eq', 'unsupported predicate')
+        op = condition['op']
+        if op == 'all':
+            return all(self._condition(x, context) for x in condition['conditions'])
+        if op == 'any':
+            return any(self._condition(x, context) for x in condition['conditions'])
+        if op == 'not':
+            return not self._condition(condition['conditions'][0], context)
+        require(op == 'eq', 'unsupported predicate')
         operand = condition['left']
         actual = self._values(operand['subject'], context)[operand['ref']]
         return type(actual) is type(condition['right']) and actual == condition['right']
@@ -49,18 +56,21 @@ class Runtime:
         self.trace.append(dict(kind='effect', ref=ref, subject=effect['subject'], before=before, after=after))
 
     def _steps(self, steps, context, depth=0):
-        require(depth < 100, 'execution depth exceeded')
-        for step in steps:
+        # An explicit stack executes a validated acyclic graph without Python recursion.
+        stack = list(reversed(steps))
+        while stack:
+            step = stack.pop()
             kind = step['kind']
             if kind == 'effect':
                 self._effect(step['ref'], context)
-            elif kind == 'procedure':
-                self._steps(self.rules['procedures'][step['ref']]['steps'], context, depth + 1)
+                continue
+            if kind == 'procedure':
+                selected = self.rules['procedures'][step['ref']]['steps']
             elif kind == 'action':
                 require(step['ref'] in self.scope['action_refs'], 'action unavailable')
                 action = self.rules['actions'][step['ref']]
                 self.trace.append(dict(kind='action', ref=step['ref']))
-                self._steps(self.rules['procedures'][action['procedure_ref']]['steps'], context, depth + 1)
+                selected = self.rules['procedures'][action['procedure_ref']]['steps']
             elif kind == 'branch':
                 selected = step['else_steps']
                 for branch in step['branches']:
@@ -69,9 +79,15 @@ class Runtime:
                     if satisfied:
                         selected = branch['steps']
                         break
-                self._steps(selected, context, depth + 1)
             else:
                 raise ValueError('unsupported step kind')
+            stack.extend(reversed(selected))
+
+    def outcome(self):
+        for end in self.scope.get('end_conditions', []):
+            if self._condition(end['condition'], {}):
+                return end['outcome']
+        return None
 
     def invoke(self, instance_id, invocation_id):
         item = self.instance(instance_id)

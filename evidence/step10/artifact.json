@@ -1,0 +1,26 @@
+{
+  "run_url": "https://github.com/jmbjr/rea_example/actions/runs/40577377787",
+  "run_id": 40577377787,
+  "artifact_id": 12767693170,
+  "source_commit": "f52332950b61b095acf2fbc4308542ce16127694",
+  "source_tree": "dfc0f4859bdcee7421d25591e802340fd1acf09c",
+  "artifact_expires": "2026-11-26T20:22:47Z",
+  "artifact_sha256": "c4d3e772a3791df26da9885c2b5d3a8b9fd47dc93495a91ac7da6927a6c4165d",
+  "package_sha256": "dcf3abab00de831548d2f52603d68a2872a7f1ab1e98752d39d77c8c1fd879df",
+  "files": {
+    "acceptance.json": "5204c968d2a531dd3a6397f8fb7a22976067e50e58570028e3c80dbfb9ec95ce",
+    "candidate.dodge.json.gz": "806004b7518a2af343c06e46c8c57960da2cc5fc63a761e78c05a1e64d91e643",
+    "cli.json": "4c98f4c68585177ce7f1b84e5c95eaed10caaf3c77d5deb53a9220db8217c18d",
+    "compiler.txt": "3e8cc208c40f60832f67377aa1b03c3e7e858f20cd5d365464944700c0bd7ad1",
+    "dependencies.txt": "e1a9ff0400f49d71158bb0657d7a7263c847f464a317c0d4fe1bb73311925462",
+    "flag-gates.json": "3756060a105a8f7a28800de62e7ecb851bb242b1042fdd35a6755ca94dca6805",
+    "flag-runtime.json": "1e6ef49a66c37817e78ea2bebd3bfc0c126edef451a163958107bc12193e1e1d",
+    "native-fixtures.json.gz": "73904d15e79ff25156ba3cf1827c05a9c44972b22c8d6c996261d141ccdac504",
+    "negative-cases.json": "d4fdf4fd8bbd398e43cd6b8c7a7a8f769f5b35d6f910d58f3e8884597e1ebcc4",
+    "perturbation.json": "bb69998ba68a769cf49a0199dc285f31978f4ba4e326bff3a77a3af1c8dfa851",
+    "python.txt": "5b3e43dc38ca01e3f5a7854ba50d4330864b0c1e0f646650b2c78cf072acc366",
+    "resolved-game.json.gz": "ea6b1f6efc5dcf681fbc9c90eab4afee99d1a5e1e049f857bab7d1022176ec4d",
+    "source-map.json.gz": "780f5d98d0a380ff8403309387021e896768584a92a4969850381e74716d7a5e",
+    "validation-report.json": "31f11c63ba0a3fd9bc4507052f15ae31fd4de22e3e94fb5540e2a4ec7b5cf99b"
+  }
+}
